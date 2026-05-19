@@ -13,13 +13,13 @@ A growing collection of [Claude Code](https://docs.claude.com/en/docs/claude-cod
 ### Via skills.sh CLI (recommended once published)
 
 ```bash
-skills install onexgroup/onex-skills/ideate
+skills install onextech/onex-skills/ideate
 ```
 
 ### Manual install (global, all skills)
 
 ```bash
-git clone https://github.com/onexgroup/onex-skills ~/code/onex-skills
+git clone https://github.com/onextech/onex-skills ~/code/onex-skills
 mkdir -p ~/.claude/skills
 ln -sfn ~/code/onex-skills/skills/ideate ~/.claude/skills/ideate
 # repeat the ln line for each skill you want
@@ -29,7 +29,7 @@ ln -sfn ~/code/onex-skills/skills/ideate ~/.claude/skills/ideate
 
 ```bash
 mkdir -p .claude/skills
-git clone https://github.com/onexgroup/onex-skills /tmp/onex-skills
+git clone https://github.com/onextech/onex-skills /tmp/onex-skills
 cp -r /tmp/onex-skills/skills/ideate .claude/skills/ideate
 ```
 

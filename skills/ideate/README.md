@@ -2,7 +2,7 @@
 
 A Claude Code skill that brainstorms gaps, loopholes, and improvement ideas on the work you just built — reviewed through a product manager's lens, returned as a categorized numbered list you can pick from.
 
-Part of the [onex-skills](https://github.com/onexgroup/onex-skills) collection.
+Part of the [onex-skills](https://github.com/onextech/onex-skills) collection.
 
 ## What it does
 
@@ -25,7 +25,7 @@ The whole point: turn the vague "what should I improve?" question into a list yo
 ### Global (Claude Code, all sessions)
 
 ```bash
-git clone https://github.com/onexgroup/onex-skills ~/code/onex-skills
+git clone https://github.com/onextech/onex-skills ~/code/onex-skills
 mkdir -p ~/.claude/skills
 ln -sfn ~/code/onex-skills/skills/ideate ~/.claude/skills/ideate
 ```
@@ -34,7 +34,7 @@ ln -sfn ~/code/onex-skills/skills/ideate ~/.claude/skills/ideate
 
 ```bash
 mkdir -p .claude/skills
-git clone https://github.com/onexgroup/onex-skills /tmp/onex-skills
+git clone https://github.com/onextech/onex-skills /tmp/onex-skills
 cp -r /tmp/onex-skills/skills/ideate .claude/skills/ideate
 ```
 
