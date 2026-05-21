@@ -1,11 +1,11 @@
 ---
 name: style
-description: Audit and refactor the UI of a specified module, feature, or page against an opinionated flat-design system — no shadows, restrained border radii, color-driven (not motion-driven) hover, dark/light-safe color tokens, a consistent landing-page section architecture, scroll-in animations, and house conventions for dialogs, drawers, text areas, horizontal scroll, and chat UI. Confirms scope first — asks which module and whether it's the entire app — if the user doesn't name one. Use when the user says "/x:style", "apply flat UI", "apply my UI guidelines", "clean up the UI", "flatten the design", "make the UI consistent", or asks to bring a module in line with the house style.
+description: Audit and refactor the UI of a specified module, feature, or page against an opinionated flat-design system — no shadows, restrained border radii, color-driven (not motion-driven) hover, dark/light-safe color tokens, a consistent landing-page section architecture, scroll-in animations, and house conventions for dialogs, drawers, text areas, horizontal scroll, and chat UI. Confirms scope first — asks which module and whether it's the entire app — if the user doesn't name one. Use when the user says "/onex:style", "apply flat UI", "apply my UI guidelines", "clean up the UI", "flatten the design", "make the UI consistent", or asks to bring a module in line with the house style.
 ---
 
-# /x:style — Apply the flat-UI house style
+# /onex:style — Apply the flat-UI house style
 
-`/x:style` audits and refactors the UI of a module, feature, or page so it conforms to an opinionated **flat design system**: no shadows, restrained radii, color-driven interactions, dark/light-safe tokens, a consistent section architecture, and house conventions for dialogs, drawers, text areas, scrolling, and chat UI.
+`/onex:style` audits and refactors the UI of a module, feature, or page so it conforms to an opinionated **flat design system**: no shadows, restrained radii, color-driven interactions, dark/light-safe tokens, a consistent section architecture, and house conventions for dialogs, drawers, text areas, scrolling, and chat UI.
 
 It **applies** the guidelines — it edits the files in scope — and reports what changed, grouped by category. It changes styling and structure only; it never alters behavior, copy, or data flow (the Chat section is the one exception — some chat items are behavioral; see Section L).
 
@@ -15,7 +15,7 @@ It **applies** the guidelines — it edits the files in scope — and reports wh
 
 Establish what you are refactoring before touching anything:
 
-1. **If the user named a module / feature / page** ("/x:style on the pricing page", "flatten the dashboard"), use it.
+1. **If the user named a module / feature / page** ("/onex:style on the pricing page", "flatten the dashboard"), use it.
 2. **Otherwise, detect candidates and ask.** Surface-scan the working tree (`app/*` route segments, `components/*` clusters, `apps/*` in a monorepo) and ask with `AskUserQuestion` — offer 3–5 detected candidates **plus an "entire app" option**. Always include the entire-app choice; the user explicitly wants that on the table.
 
 Wait for the answer. Do not refactor until scope is confirmed.
@@ -208,5 +208,5 @@ Apply this section **only when the scope contains chat UI.** Several items here 
 
 - A single one-off styling tweak — just make the change.
 - A request that conflicts with these guidelines (e.g. "add a drop shadow to the cards") — follow the user's explicit instruction; this skill is the default house style, not a veto.
-- Net-new feature building — design the feature first, then run `/x:style` to bring it in line.
+- Net-new feature building — design the feature first, then run `/onex:style` to bring it in line.
 - Pure logic/bug work with no UI surface.

@@ -2,11 +2,11 @@
 
 A Claude Code skill that audits and refactors the UI of a module against an opinionated **flat-design house style** — no shadows, restrained radii, color-driven interactions, dark/light-safe tokens, and consistent conventions for sections, dialogs, drawers, text areas, scrolling, and chat UI.
 
-Ships in the [`x`](../../README.md) plugin — invoked as **`/x:style`**.
+Ships in the [`onex`](../../README.md) plugin — invoked as **`/onex:style`**.
 
 ## What it does
 
-Trigger it with `/x:style` (or "apply flat UI", "apply my UI guidelines", "clean up the UI", "flatten the design"). Claude will:
+Trigger it with `/onex:style` (or "apply flat UI", "apply my UI guidelines", "clean up the UI", "flatten the design"). Claude will:
 
 1. **Confirm scope first** — if you didn't name a module/feature/page, it lists detected candidates and asks you to pick, always including an **"entire app"** option.
 2. **Scan the scope** — maps the components and works out which guideline categories actually apply.
@@ -30,14 +30,14 @@ Trigger it with `/x:style` (or "apply flat UI", "apply my UI guidelines", "clean
 
 ## Install
 
-This skill ships in the **`x`** Claude Code plugin:
+This skill ships in the **`onex`** Claude Code plugin:
 
 ```bash
-/plugin marketplace add onextech/onex-skills
-/plugin install x@onex-skills
+/plugin marketplace add onextech/skills
+/plugin install onex@skills
 ```
 
-Then invoke it with `/x:style`.
+Then invoke it with `/onex:style`.
 
 ## License
 

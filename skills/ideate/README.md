@@ -2,11 +2,11 @@
 
 A Claude Code skill that brainstorms gaps, loopholes, and improvement ideas across an **entire module or app** — reviewed through a senior product manager's lens, returned as a thematic, severity-marked, continuously-numbered list you can pick from.
 
-Ships in the [`x`](../../README.md) plugin — invoked as **`/x:ideate`**.
+Ships in the [`onex`](../../README.md) plugin — invoked as **`/onex:ideate`**.
 
 ## What it does
 
-When you're ready to step back and look at a whole module — not just the diff you just shipped — trigger ideate (`/x:ideate`, or just say "ideate the auth module", "what are we missing in billing", "review the admin panel as a PM"). Claude will:
+When you're ready to step back and look at a whole module — not just the diff you just shipped — trigger ideate (`/onex:ideate`, or just say "ideate the auth module", "what are we missing in billing", "review the admin panel as a PM"). Claude will:
 
 1. **Confirm scope first** — if you didn't name a module, Claude lists the modules it detected (`auth`, `dashboard`, `admin`, `billing`, etc.) and asks you to pick. No guessing, no defaulting to "the recent diff".
 2. **Map the module** — entry points, server actions, data model touchpoints, integrations.
@@ -29,14 +29,14 @@ The whole point: turn the vague "what should I improve across this module?" ques
 
 ## Install
 
-This skill ships in the **`x`** Claude Code plugin:
+This skill ships in the **`onex`** Claude Code plugin:
 
 ```bash
-/plugin marketplace add onextech/onex-skills
-/plugin install x@onex-skills
+/plugin marketplace add onextech/skills
+/plugin install onex@skills
 ```
 
-Then trigger it by saying `ideate`, `ideate <module>`, `/x:ideate`, or any of the phrases listed in `SKILL.md`'s description.
+Then trigger it by saying `ideate`, `ideate <module>`, `/onex:ideate`, or any of the phrases listed in `SKILL.md`'s description.
 
 ## Why this exists
 

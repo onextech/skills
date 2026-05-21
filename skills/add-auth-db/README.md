@@ -2,11 +2,11 @@
 
 A Claude Code skill that adds a complete **Better Auth + Neon Postgres** layer to a Next.js App Router app — using **raw SQL, no ORM**.
 
-Ships in the [`x`](../../README.md) plugin — invoked as **`/x:add-auth-db`**.
+Ships in the [`onex`](../../README.md) plugin — invoked as **`/onex:add-auth-db`**.
 
 ## What it does
 
-Trigger it with `/x:add-auth-db` (or "add auth and a database", "set up Better Auth with Neon", "add login to this app"). Claude will:
+Trigger it with `/onex:add-auth-db` (or "add auth and a database", "set up Better Auth with Neon", "add login to this app"). Claude will:
 
 1. **Detect the stack** — confirms Next.js App Router, the package manager, shadcn/ui, and whether any database or auth already exists (it won't clobber existing setup).
 2. **Confirm scope** — asks two questions up front:
@@ -30,14 +30,14 @@ Trigger it with `/x:add-auth-db` (or "add auth and a database", "set up Better A
 
 ## Install
 
-This skill ships in the **`x`** Claude Code plugin:
+This skill ships in the **`onex`** Claude Code plugin:
 
 ```bash
-/plugin marketplace add onextech/onex-skills
-/plugin install x@onex-skills
+/plugin marketplace add onextech/skills
+/plugin install onex@skills
 ```
 
-Then invoke it with `/x:add-auth-db`.
+Then invoke it with `/onex:add-auth-db`.
 
 ## License
 
