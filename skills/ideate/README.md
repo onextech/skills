@@ -2,11 +2,11 @@
 
 A Claude Code skill that brainstorms gaps, loopholes, and improvement ideas across an **entire module or app** — reviewed through a senior product manager's lens, returned as a thematic, severity-marked, continuously-numbered list you can pick from.
 
-Part of the [onex-skills](https://github.com/onextech/onex-skills) collection.
+Ships in the [`x`](../../README.md) plugin — invoked as **`/x:ideate`**.
 
 ## What it does
 
-When you're ready to step back and look at a whole module — not just the diff you just shipped — trigger ideate (`/ideate`, or just say "ideate the auth module", "what are we missing in billing", "review the admin panel as a PM"). Claude will:
+When you're ready to step back and look at a whole module — not just the diff you just shipped — trigger ideate (`/x:ideate`, or just say "ideate the auth module", "what are we missing in billing", "review the admin panel as a PM"). Claude will:
 
 1. **Confirm scope first** — if you didn't name a module, Claude lists the modules it detected (`auth`, `dashboard`, `admin`, `billing`, etc.) and asks you to pick. No guessing, no defaulting to "the recent diff".
 2. **Map the module** — entry points, server actions, data model touchpoints, integrations.
@@ -29,23 +29,14 @@ The whole point: turn the vague "what should I improve across this module?" ques
 
 ## Install
 
-### Global (Claude Code, all sessions)
+This skill ships in the **`x`** Claude Code plugin:
 
 ```bash
-git clone https://github.com/onextech/onex-skills ~/code/onex-skills
-mkdir -p ~/.claude/skills
-ln -sfn ~/code/onex-skills/skills/ideate ~/.claude/skills/ideate
+/plugin marketplace add onextech/onex-skills
+/plugin install x@onex-skills
 ```
 
-### Project-scoped
-
-```bash
-mkdir -p .claude/skills
-git clone https://github.com/onextech/onex-skills /tmp/onex-skills
-cp -r /tmp/onex-skills/skills/ideate .claude/skills/ideate
-```
-
-Then trigger it in any Claude Code session by saying `ideate`, `/ideate`, `ideate <module>`, or any of the phrases listed in `SKILL.md`'s description.
+Then trigger it by saying `ideate`, `ideate <module>`, `/x:ideate`, or any of the phrases listed in `SKILL.md`'s description.
 
 ## Why this exists
 

@@ -1,0 +1,13 @@
+{
+  "name": "x",
+  "description": "OnEx Claude Code skills — opinionated skills for building, reviewing, and shipping software.",
+  "version": "0.1.0",
+  "author": {
+    "name": "onextech",
+    "email": "joel@onexgroup.co"
+  },
+  "homepage": "https://github.com/onextech/onex-skills",
+  "repository": "https://github.com/onextech/onex-skills",
+  "license": "MIT",
+  "keywords": ["skills", "nextjs", "ui", "auth", "product"]
+}

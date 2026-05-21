@@ -1,0 +1,15 @@
+{
+  "name": "onex-skills",
+  "owner": {
+    "name": "onextech",
+    "email": "joel@onexgroup.co"
+  },
+  "description": "OnEx Claude Code skills collection.",
+  "plugins": [
+    {
+      "name": "x",
+      "source": "./",
+      "description": "OnEx skills — ideate, add-auth-db, and style."
+    }
+  ]
+}
