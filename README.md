@@ -11,6 +11,7 @@ Each skill lives in `skills/<name>/` with its own `SKILL.md` and `README.md`. Th
 | [`ideate`](./skills/ideate) | `/onex:ideate` | Brainstorm gaps, loopholes, and improvements across a module or app — reviewed as a PM, returned as a categorized, severity-marked numbered list you can pick from. |
 | [`add-auth-db`](./skills/add-auth-db) | `/onex:add-auth-db` | Add Better Auth + a Neon Postgres database to a Next.js app using raw SQL (no ORM) — migration runner, admin seeder, email/magic-link/OTP auth, and a login dialog. |
 | [`style`](./skills/style) | `/onex:style` | Audit and refactor a module's UI against an opinionated flat-design house style — no shadows, dark/light-safe tokens, consistent sections, dialogs, drawers, text areas, and chat UI. |
+| [`style-auth-ui`](./skills/style-auth-ui) | `/onex:style-auth-ui` | Style the OAuth / social sign-in buttons of an app's auth UI — official provider icons and brand colors, button layout and sizing, where they sit on the login page and auth dialog, and the loading/error states. |
 
 ## Install
 
@@ -40,7 +41,8 @@ skills/
 └── skills/
     ├── ideate/SKILL.md
     ├── add-auth-db/SKILL.md
-    └── style/SKILL.md
+    ├── style/SKILL.md
+    └── style-auth-ui/SKILL.md
 ```
 
 ## Contributing a new skill
