@@ -1,6 +1,6 @@
 # skills
 
-The **`onex`** [Claude Code](https://docs.claude.com/en/docs/claude-code/overview) plugin — a collection of OnEx skills for building, reviewing, and shipping software. Once the plugin is installed, every skill is namespaced under `onex:` and invoked as `/onex:<name>`.
+The **`onex`** [Claude Code](https://docs.claude.com/en/docs/claude-code/overview) plugin — a collection of OnEx skills for building, reviewing, and shipping software. Once the plugin is installed, every skill is namespaced under the plugin name and invoked as `/onex:<name>`.
 
 Each skill lives in `skills/<name>/` with its own `SKILL.md` and `README.md`. The plugin manifest is in `.claude-plugin/`.
 
@@ -29,7 +29,27 @@ claude plugin marketplace add onextech/skills
 claude plugin install onex@skills
 ```
 
-After installing, invoke any skill with `/onex:<name>` — e.g. `/onex:ideate`, `/onex:add-auth-db`, `/onex:style`.
+After installing, invoke any skill as `/onex:<name>` — e.g. `/onex:ideate`, `/onex:add-auth-db`, `/onex:style`. Type `/onex:` and the menu filters to just this plugin's skills.
+
+## Local development
+
+To work on the skills against this repo directly (instead of the published GitHub copy), point the marketplace at the local path:
+
+```bash
+/plugin marketplace add /absolute/path/to/onex-skills
+/plugin install onex@skills
+```
+
+A marketplace name is unique, and both this repo and the GitHub copy register as `skills`. If you already added the GitHub one, remove it first:
+
+```bash
+/plugin uninstall onex@skills
+/plugin marketplace remove skills
+/plugin marketplace add /absolute/path/to/onex-skills
+/plugin install onex@skills
+```
+
+After editing a skill, run `/plugin marketplace update skills` (and reinstall if you bumped `version`) so Claude Code picks up the change.
 
 ## Repository layout
 
@@ -47,7 +67,7 @@ skills/
 
 ## Contributing a new skill
 
-1. Create `skills/<your-skill>/SKILL.md` with YAML frontmatter (`name`, `description`) and the skill body. The `name` stays a bare slug — the `onex:` namespace is applied automatically by the plugin.
+1. Create `skills/<your-skill>/SKILL.md` with YAML frontmatter and the skill body. Include **only** a `description` field — do **not** add a `name` field. The skill name is taken from the directory, and the `onex:` namespace is applied automatically by the plugin. (A `name` field overrides the directory name and suppresses the namespace, so the skill would show as a bare `/<name>` instead of `/onex:<name>`.)
 2. Optionally add `skills/<your-skill>/README.md` for a human-facing description.
 3. Add a row to the **Skills** table above.
 4. Bump `version` in `.claude-plugin/plugin.json`.

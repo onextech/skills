@@ -1,5 +1,4 @@
 ---
-name: add-auth-db
 description: Add Better Auth plus a Neon Postgres database to a Next.js App Router app using raw SQL — no ORM. Scaffolds a raw-SQL migration runner (`yarn db:migrate`) and an idempotent admin seeder (`yarn db:seed`), wires email+password / passwordless magic-link / email-OTP authentication via Resend, builds a compact login / sign-up / forgot-password dialog with the logo top-centered, and updates `.env.example`. Asks at run time whether to add Google/LinkedIn OAuth and SMS OTP as extra login methods, and whether the app is a multi-tenant SaaS (Better Auth organization model + seeded org). Use when the user says "/onex:add-auth-db", "add auth and a database", "set up Better Auth with Neon", "add login to this app", "scaffold authentication", or wants authentication + Postgres without an ORM.
 ---
 

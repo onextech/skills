@@ -1,5 +1,4 @@
 ---
-name: style-auth-ui
 description: Style the OAuth / social sign-in buttons of a Next.js app's auth UI — which official provider icons and brand colors to use (Google, LinkedIn, Apple, GitHub, Microsoft), where the buttons sit on the login page and in the auth dialog, and the exact button layout, sizing, hover/pending/error states, and accessibility. Use when the user says "/onex:style-auth-ui", "style the login buttons", "style the auth UI", "add a Google/LinkedIn/Apple button", "fix the OAuth buttons", "the social buttons look off", "lay out the social login", or asks how third-party sign-in buttons should look or where they belong.
 ---
 

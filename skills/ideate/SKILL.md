@@ -1,5 +1,4 @@
 ---
-name: ideate
 description: Brainstorm gaps, loopholes, and improvement ideas across an entire module or app, reviewed through a product manager's lens. Always confirms scope first by asking which module to review (with a detected list to pick from) unless the user already named one. Returns a thematic, severity-marked, continuously-numbered list and ends with a prioritized "top 5 this week" pick, then offers to phase implementation. Use when the user says "ideate", "ideate on X", "what are we missing", "review this as a PM", "what could we improve", "brainstorm gaps", "loopholes in this", "what's next on this module/app", or asks for a numbered list of refinements at the module or product level. Do NOT use for bug fixes, one-line changes, pure code reviews, or architectural decisions — this is product-thinking scope at the module/app level, not engineering scope.
 ---
 

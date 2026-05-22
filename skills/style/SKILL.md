@@ -1,5 +1,4 @@
 ---
-name: style
 description: Audit and refactor the UI of a specified module, feature, or page against an opinionated flat-design system — no shadows, restrained border radii, color-driven (not motion-driven) hover, dark/light-safe color tokens, a consistent landing-page section architecture, scroll-in animations, and house conventions for dialogs, drawers, text areas, horizontal scroll, and chat UI. Confirms scope first — asks which module and whether it's the entire app — if the user doesn't name one. Use when the user says "/onex:style", "apply flat UI", "apply my UI guidelines", "clean up the UI", "flatten the design", "make the UI consistent", or asks to bring a module in line with the house style.
 ---
 
