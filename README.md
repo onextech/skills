@@ -12,6 +12,7 @@ Each skill lives in `skills/<name>/` with its own `SKILL.md` and `README.md`. Th
 | [`add-auth-db`](./skills/add-auth-db) | `/onex:add-auth-db` | Add Better Auth + a Neon Postgres database to a Next.js app using raw SQL (no ORM) — migration runner, admin seeder, email/magic-link/OTP auth, and a login dialog. |
 | [`style`](./skills/style) | `/onex:style` | Audit and refactor a module's UI against an opinionated flat-design house style — no shadows, dark/light-safe tokens, consistent sections, dialogs, drawers, text areas, and chat UI. |
 | [`style-auth-ui`](./skills/style-auth-ui) | `/onex:style-auth-ui` | Style the OAuth / social sign-in buttons of an app's auth UI — official provider icons and brand colors, button layout and sizing, where they sit on the login page and auth dialog, and the loading/error states. |
+| [`setup-agent`](./skills/setup-agent) | `/onex:setup-agent` | Plan and scaffold an AI agent on top of the six modern agent protocols — MCP (tools), A2A (agent-to-agent), UCP (commerce discovery), AP2 (agent payments), A2UI (interactive UI primitives), and AGUI (event streaming). Locks framework (Claude/OpenAI Agent SDK) and commerce/UI/multi-agent scope first, writes a plan to `docs/`, then scaffolds protocol-by-protocol on confirmation. |
 
 ## Install
 
@@ -62,7 +63,8 @@ skills/
     ├── ideate/SKILL.md
     ├── add-auth-db/SKILL.md
     ├── style/SKILL.md
-    └── style-auth-ui/SKILL.md
+    ├── style-auth-ui/SKILL.md
+    └── setup-agent/SKILL.md
 ```
 
 ## Contributing a new skill
