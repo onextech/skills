@@ -13,6 +13,7 @@ Each skill lives in `skills/<name>/` with its own `SKILL.md` and `README.md`. Th
 | [`style`](./skills/style) | `/onex:style` | Audit and refactor a module's UI against an opinionated flat-design house style — no shadows, dark/light-safe tokens, consistent sections, dialogs, drawers, text areas, and chat UI. |
 | [`style-auth-ui`](./skills/style-auth-ui) | `/onex:style-auth-ui` | Style the OAuth / social sign-in buttons of an app's auth UI — official provider icons and brand colors, button layout and sizing, where they sit on the login page and auth dialog, and the loading/error states. |
 | [`setup-agent`](./skills/setup-agent) | `/onex:setup-agent` | Plan and scaffold an AI agent on top of the six modern agent protocols — MCP (tools), A2A (agent-to-agent), UCP (commerce discovery), AP2 (agent payments), A2UI (interactive UI primitives), and AGUI (event streaming). Locks framework (Claude/OpenAI Agent SDK) and commerce/UI/multi-agent scope first, writes a plan to `docs/`, then scaffolds protocol-by-protocol on confirmation. |
+| [`rewrite`](./skills/rewrite) | `/onex:rewrite` | Audit and rewrite content to remove AI writing patterns — em dashes, hollow intensifiers, vocabulary tells (delve, leverage, robust…), template phrases, hashtag stuffing, chatbot artifacts, and structural uniformity. Detect-only mode and six context profiles (`linkedin`, `blog`, `technical-blog`, `investor-email`, `docs`, `casual`). |
 
 ## Install
 
@@ -64,7 +65,8 @@ skills/
     ├── add-auth-db/SKILL.md
     ├── style/SKILL.md
     ├── style-auth-ui/SKILL.md
-    └── setup-agent/SKILL.md
+    ├── setup-agent/SKILL.md
+    └── rewrite/SKILL.md
 ```
 
 ## Contributing a new skill

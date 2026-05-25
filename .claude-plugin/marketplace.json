@@ -9,7 +9,7 @@
     {
       "name": "onex",
       "source": "./",
-      "description": "OnEx skills — ideate, add-auth-db, style, and style-auth-ui."
+      "description": "OnEx skills — ideate, add-auth-db, style, style-auth-ui, setup-agent, and rewrite."
     }
   ]
 }
