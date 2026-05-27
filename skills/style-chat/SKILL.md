@@ -1,5 +1,5 @@
 ---
-description: Style and structure a chat UI in a Next.js app — input behavior (Enter inserts a newline, ⌘/Ctrl + Enter sends), the always-visible bottom-fixed composer with send button and `+` attachment menu, message bubbles with timestamp / copy / edit, streaming with auto-scroll and a scroll-to-bottom button, reasoning-model "Thinking…" accordions (dev vs prod detail), header controls (New chat + `⋮` Delete chat in destructive red), an empty state with welcome + at least three suggestion chips, follow-up suggestion chips above the input, and lightweight-then-reasoning model routing with an optimistic interim message for slow responses. Use when the user says "/onex:style-chat", "style the chat UI", "fix the chat", "add streaming", "add suggestion chips", "the chat input keeps overflowing", "auto-scroll the chat", "show the thinking steps", "add a chatbot", or asks how a chat / assistant UI should look and behave.
+description: Style and structure a chat UI in a Next.js app — input behavior (Enter sends, Shift + Enter inserts a newline, IME-composition safe), the always-visible bottom-fixed composer with send button and `+` attachment menu, message bubbles with timestamp / copy / edit, streaming with auto-scroll and a scroll-to-bottom button, reasoning-model "Thinking…" accordions (dev vs prod detail), header controls (New chat + `⋮` Delete chat in destructive red), an empty state with welcome + at least three suggestion chips, follow-up suggestion chips above the input, and lightweight-then-reasoning model routing with an optimistic interim message for slow responses. Use when the user says "/onex:style-chat", "style the chat UI", "fix the chat", "add streaming", "add suggestion chips", "the chat input keeps overflowing", "auto-scroll the chat", "show the thinking steps", "add a chatbot", or asks how a chat / assistant UI should look and behave.
 ---
 
 # /onex:style-chat — Style and structure a chat UI
@@ -20,7 +20,7 @@ Several items here are behavioral, not purely cosmetic (streaming, model routing
 
 ## Golden rules
 
-1. **Enter inserts a newline. ⌘/Ctrl + Enter sends.** One keyboard contract — same as text areas in [`/onex:style`](../style) §J.
+1. **Enter sends. Shift + Enter inserts a newline.** One keyboard contract — the ChatGPT / Claude default. Guard against IME composition (`e.nativeEvent.isComposing`) so confirming a Chinese / Japanese / Korean candidate doesn't accidentally submit.
 2. **The composer is always visible.** Fixed to the bottom even when the user scrolls through history.
 3. **Responses stream.** No non-streaming chat replies.
 4. **Auto-scroll on new messages — unless the user has scrolled up.** Then show a scroll-to-bottom button instead of yanking them down.
@@ -41,7 +41,9 @@ Top to bottom, full height:
 │                                  [↓ to bottom]   │  ← only when scrolled up
 ├──────────────────────────────────────────────────┤
 │ ◂ chip · chip · chip · chip · chip · chip ▸      │  ← follow-up chips
-│ [ + ]  textarea…                       [ send ]  │  ← composer, fixed
+│ ┌──────────────────────────────────────────────┐ │
+│ │ [ + ]  textarea…                   [ send ]  │ │  ← single row, inside
+│ └──────────────────────────────────────────────┘ │  ← composer, fixed
 └──────────────────────────────────────────────────┘
 ```
 
@@ -49,26 +51,47 @@ The composer is fixed; the thread scrolls behind it. Add bottom padding to the t
 
 ## Composer (the input)
 
-- **Enter** inserts a newline. **⌘/Ctrl + Enter** sends.
-- Show a `<kbd>⌘ Enter</kbd>` hint on or beside the send button so the keyboard contract is discoverable.
-- The composer is a **textarea** that **auto-grows** with content — **min ~3 rows**, with a **max-height** so it stops growing and scrolls internally past that point. (See [`/onex:style`](../style) §J.)
-- A **send button** is always present — typically a circular icon button (`Send` from `lucide-react`) on the bottom-right of the composer.
+- **The composer is one bordered surface, laid out as a single row.** A rounded `border` container with `flex items-end` so the `+` attachment menu, the textarea, and the send button sit side-by-side on **one row**. The wrapper carries `focus-within:ring-1 focus-within:ring-ring` so the whole box highlights when the user types. The textarea fills the middle (`flex-1`) with no border, background, or focus ring of its own (`border-0 bg-transparent shadow-none focus-visible:ring-0`). As the textarea auto-grows to multiple lines, `items-end` keeps the buttons anchored to the bottom-left and bottom-right corners. The "input on top, toolbar row below" stacked layout is explicitly rejected — keep the buttons on the same row as the input.
+- **Enter** sends. **Shift + Enter** inserts a newline. Guard the handler against IME composition so confirming a Chinese / Japanese / Korean candidate doesn't submit.
+- Show a `<kbd>Enter</kbd>` / `<kbd>Shift Enter for newline</kbd>` hint on or beside the send button (tooltip or inline) so the keyboard contract is discoverable.
+- The composer is a **textarea** that **auto-grows** with content — **starts at 1 row** (compact, ChatGPT-style) and expands as the user types, with a **max-height** (~10 rows) so it stops growing and scrolls internally past that point. Do **not** floor the textarea with `min-h-[60px]` or `rows={3}` — it should hug a single line when empty. (See [`/onex:style`](../style) §J.)
+- A **send button** is always present — typically a circular icon button (`Send` from `lucide-react`) on the bottom-right, **inside** the composer's bordered surface.
 - Disable the send button when the textarea is empty *or* a response is streaming.
 - The whole composer is **fixed to the bottom** of the chat surface and **always visible**, even as the user scrolls history.
 
 ```tsx
 function onKeyDown(e: React.KeyboardEvent<HTMLTextAreaElement>) {
-  if (e.key === "Enter" && (e.metaKey || e.ctrlKey)) {
+  // Don't intercept Enter while an IME candidate is open — otherwise
+  // confirming a Chinese / Japanese / Korean character would submit.
+  if (e.nativeEvent.isComposing) return
+  if (e.key === "Enter" && !e.shiftKey) {
     e.preventDefault()
     send()
   }
-  // plain Enter falls through → newline (default behavior)
+  // Shift + Enter falls through → newline (default behavior)
 }
+```
+
+Structure sketch — one wrapper card owns the border + ring; the `+`, the
+textarea, and the send button share one `flex items-end` row inside it:
+
+```tsx
+<form onSubmit={…} className="border-t px-3 py-2">
+  <div className="flex items-end gap-1 rounded-md border bg-background p-1 focus-within:ring-1 focus-within:ring-ring">
+    <AttachmentMenu />   {/* + on the left */}
+    <Textarea
+      rows={1}
+      className="min-h-0 flex-1 resize-none border-0 bg-transparent px-1 py-1.5 text-xs shadow-none focus-visible:ring-0 focus-visible:ring-offset-0"
+      …
+    />
+    <SendButton />        {/* send on the right */}
+  </div>
+</form>
 ```
 
 ## Attachments
 
-- A **bottom-left `+` icon button** opens a dropdown — *Attach file*, *Upload image*, plus any app-specific entries (*Camera*, *From URL*, …).
+- A **`+` icon button inside the composer's bottom-left corner** opens a dropdown — *Attach file*, *Upload image*, plus any app-specific entries (*Camera*, *From URL*, …). It must live inside the bordered composer surface, not as a sibling beside it.
 - Image upload uses the **native file input** so mobile opens the camera / photo gallery:
   - `<input type="file" accept="image/*">` for gallery.
   - `<input type="file" accept="image/*" capture="environment">` for a *Camera* entry on mobile.
@@ -138,11 +161,12 @@ After each assistant response, generate **follow-up suggestion chips** with a **
 
 ## Review checklist
 
-- [ ] Enter inserts a newline; ⌘/Ctrl + Enter sends; a `<kbd>⌘ Enter</kbd>` hint is visible on or near the send button.
+- [ ] Enter sends; Shift + Enter inserts a newline; the handler guards against IME composition (`e.nativeEvent.isComposing`); a `<kbd>Enter</kbd>` / `<kbd>Shift Enter</kbd>` hint is visible on or near the send button.
 - [ ] Composer is fixed to the bottom and stays visible while the thread scrolls.
 - [ ] Send button is always present and disabled while empty or streaming.
-- [ ] Textarea auto-grows from ~3 rows to a max-height, then scrolls internally.
+- [ ] Textarea starts at 1 row (no `min-h` floor, `rows={1}`) and auto-grows up to a max-height, then scrolls internally.
 - [ ] `+` attachment menu sits in the bottom-left; image upload uses the native file input.
+- [ ] The `+` attachment menu, the textarea, and the send button share a single row inside the composer's bordered surface (`flex items-end`, not a stacked toolbar row below the textarea).
 - [ ] Every message has a timestamp, copy, and (user) edit / (assistant) regenerate.
 - [ ] Editing a user message truncates the thread from that point and re-runs.
 - [ ] Responses stream; an animated loader covers the wait for the first token.
