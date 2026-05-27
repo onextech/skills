@@ -1,12 +1,14 @@
 ---
-description: Audit and refactor the UI of a specified module, feature, or page against an opinionated flat-design system — no shadows, restrained border radii, color-driven (not motion-driven) hover, dark/light-safe color tokens, a consistent landing-page section architecture, scroll-in animations, and house conventions for dialogs, drawers, text areas, horizontal scroll, and chat UI. Confirms scope first — asks which module and whether it's the entire app — if the user doesn't name one. Use when the user says "/onex:style", "apply flat UI", "apply my UI guidelines", "clean up the UI", "flatten the design", "make the UI consistent", or asks to bring a module in line with the house style.
+description: Audit and refactor the UI of a specified module, feature, or page against an opinionated flat-design system — no shadows, restrained border radii, color-driven (not motion-driven) hover, dark/light-safe color tokens, a consistent landing-page section architecture, scroll-in animations, and house conventions for dialogs, drawers, text areas, and horizontal scroll. (For chat / assistant UIs, see the sibling `/onex:style-chat` skill.) Confirms scope first — asks which module and whether it's the entire app — if the user doesn't name one. Use when the user says "/onex:style", "apply flat UI", "apply my UI guidelines", "clean up the UI", "flatten the design", "make the UI consistent", or asks to bring a module in line with the house style.
 ---
 
 # /onex:style — Apply the flat-UI house style
 
-`/onex:style` audits and refactors the UI of a module, feature, or page so it conforms to an opinionated **flat design system**: no shadows, restrained radii, color-driven interactions, dark/light-safe tokens, a consistent section architecture, and house conventions for dialogs, drawers, text areas, scrolling, and chat UI.
+`/onex:style` audits and refactors the UI of a module, feature, or page so it conforms to an opinionated **flat design system**: no shadows, restrained radii, color-driven interactions, dark/light-safe tokens, a consistent section architecture, and house conventions for dialogs, drawers, text areas, and scrolling.
 
-It **applies** the guidelines — it edits the files in scope — and reports what changed, grouped by category. It changes styling and structure only; it never alters behavior, copy, or data flow (the Chat section is the one exception — some chat items are behavioral; see Section L).
+It **applies** the guidelines — it edits the files in scope — and reports what changed, grouped by category. It changes styling and structure only; it never alters behavior, copy, or data flow.
+
+> **Chat / assistant UIs are out of scope here.** Several chat conventions are behavioral, not cosmetic, so they live in a sibling skill: [`/onex:style-chat`](../style-chat). Run that one for chat surfaces, and this one for everything else.
 
 ## How to run
 
@@ -21,11 +23,11 @@ Wait for the answer. Do not refactor until scope is confirmed.
 
 ### 2. Scan the scope
 
-Map the files and components in scope and note which guideline categories actually apply — sections/landing pages, dialogs, drawers, text areas, carousels/horizontal scroll, chat. Skip categories with no surface area. Section L (Chat) runs only when the scope contains chat UI.
+Map the files and components in scope and note which guideline categories actually apply — sections/landing pages, dialogs, drawers, text areas, carousels/horizontal scroll. Skip categories with no surface area. If the scope contains a chat / assistant surface, run [`/onex:style-chat`](../style-chat) for that surface instead of (or alongside) this skill.
 
 ### 3. Apply the guidelines
 
-Work through the applicable categories (A–L) and edit the files. While doing so:
+Work through the applicable categories (A–K) and edit the files. While doing so:
 
 - **Create missing shared primitives** rather than repeating fixes: the `useInViewAnimation` hook + `fadeInUp` CSS, a `scrollbar-hide` utility, a `Container` component/class. Build each once, reuse everywhere.
 - **Use `cn()`** to merge classes; prefer editing toward the project's existing tokens and components.
@@ -35,7 +37,7 @@ Work through the applicable categories (A–L) and edit the files. While doing s
 
 ### 4. Report
 
-Close with a summary grouped by category (A–L), each item naming the files touched — e.g. "**A. Flat surfaces** — removed `shadow-lg` from 6 cards in `components/pricing/*`". Flag anything you intentionally skipped and why.
+Close with a summary grouped by category (A–K), each item naming the files touched — e.g. "**A. Flat surfaces** — removed `shadow-lg` from 6 cards in `components/pricing/*`". Flag anything you intentionally skipped and why.
 
 ---
 
@@ -149,47 +151,9 @@ For a **full-screen drawer**:
 - A **top-right close (X)** is always present, same as a dialog (Section H).
 - It **slides up from the bottom**.
 
-### L. Chat UI
+### L. Chat UI — moved
 
-Apply this section **only when the scope contains chat UI.** Several items here are behavioral, not cosmetic — implement them, but confirm with the user before large architectural additions (model routing, streaming infrastructure).
-
-**Input**
-- **Enter inserts a newline.** **⌘/Ctrl + Enter sends.** (Consistent with Section J.)
-- There is always a **send button** to click — typically a circular icon button with a right-arrow.
-- The input is **fixed to the bottom and always visible**, even when the user scrolls up through history.
-
-**Attachments**
-- A **bottom-left `+` icon** with a dropdown to attach files / upload an image.
-- Image upload uses the **native file input** so mobile opens the camera/photo gallery.
-
-**Message bubbles**
-- Every message shows a **timestamp**, a **copy** icon (copies the message text), and an **edit** action. Editing a user message truncates the thread from that point and re-runs the request.
-
-**Streaming & loading**
-- **Responses always stream** — no non-streaming chat responses.
-- While waiting for the bot, show an **animated loader** in the bot's message slot — a looping animated `...` ellipsis, or a spinner, whichever suits the app.
-- On a **new message**, auto-scroll to the bottom.
-- If the user has scrolled up while a response is streaming, show a **scroll-to-bottom button** (a down-arrow, centered, just above the input) that returns them to the latest message.
-
-**Reasoning models**
-- Show **"Thinking…" / "Reasoning…"** with the animated loader while the model reasons.
-- Render the **reasoning steps in an accordion** below the loader, expandable on demand.
-- **In development:** inside the accordion, show tool calls as JSON code blocks plus token usage and other debug detail.
-- **In production:** show only a summary of the reasoning steps — no tool calls, no token usage.
-
-**Header controls**
-- A **New Chat / Reset** control top-right near the chat header.
-- A **`⋮` dropdown** beside it containing **Delete chat** — trash icon, label in red/destructive text.
-
-**Empty state**
-- A **welcome icon + title + subtitle**, and **at least three suggestion chips** — common ways to use the bot — that start a conversation on click.
-
-**Follow-up suggestions**
-- After each response, generate **follow-up suggestion chips** with a fast/lightweight model and show them as a **single side-scrolling row just above the input** (scrollbar hidden, per Section I), letting the user continue without typing.
-
-**Model routing & responsiveness**
-- **Triage with a lightweight model first**, then escalate to a reasoning model only when the task genuinely needs it — saves tokens and keeps simple replies fast.
-- For a **slow reasoning response**, send an immediate **optimistic interim message** ("Hang on — let me think this through…") with a loader and the live reasoning steps, then replace it with the full answer once ready. Never leave the user staring at nothing.
+Chat / assistant UI conventions now live in the sibling skill **[`/onex:style-chat`](../style-chat)** — input behavior, attachments, message actions, streaming, reasoning accordions, header controls, empty state, follow-up chips, and model routing. Run it whenever the scope contains a chat surface.
 
 ---
 
@@ -197,10 +161,10 @@ Apply this section **only when the scope contains chat UI.** Several items here 
 
 - **Confirm scope first** — module/feature/page, and always offer "entire app". Never guess.
 - **Apply, don't just report** — edit the files, then summarize by category.
-- **Styling & structure only** — preserve behavior, copy, and data flow (Chat behavioral items excepted, and confirmed first).
+- **Styling & structure only** — preserve behavior, copy, and data flow.
 - **Build shared primitives once** — animation hook, `scrollbar-hide`, `Container` — and reuse them.
 - **Phase large scope** — commit per phase; write a plan to `docs/` for entire-app runs.
-- **Skip categories with no surface area** — don't invent dialogs or chat where none exist.
+- **Skip categories with no surface area** — don't invent dialogs or drawers where none exist.
 - Merge classes with `cn()`; honor the project's existing tokens and components.
 
 ## When NOT to use this skill

@@ -1,6 +1,6 @@
 # style
 
-A Claude Code skill that audits and refactors the UI of a module against an opinionated **flat-design house style** — no shadows, restrained radii, color-driven interactions, dark/light-safe tokens, and consistent conventions for sections, dialogs, drawers, text areas, scrolling, and chat UI.
+A Claude Code skill that audits and refactors the UI of a module against an opinionated **flat-design house style** — no shadows, restrained radii, color-driven interactions, dark/light-safe tokens, and consistent conventions for sections, dialogs, drawers, text areas, and scrolling. (Chat / assistant UIs are covered separately by the sibling [`style-chat`](../style-chat) skill.)
 
 Ships in the [`onex`](../../README.md) plugin — invoked as **`/onex:style`**.
 
@@ -26,7 +26,8 @@ Trigger it with `/onex:style` (or "apply flat UI", "apply my UI guidelines", "cl
 - **I. Horizontal scroll** — hidden scrollbars (except tables) for tabs, carousels, truncated headers.
 - **J. Text areas** — auto-grow, min ~3 rows, max-height with inner scroll, ⌘+Enter submit with a `kbd` hint.
 - **K. Drawers** — true full-screen, top-right close, no top dimmer, slides up from the bottom.
-- **L. Chat UI** — input behavior, attachments, message actions, streaming/loading, reasoning accordions, header controls, scroll behavior, empty-state and follow-up suggestion chips, and model routing. Applied only when the scope contains chat UI.
+
+> Chat / assistant UIs — composer behavior, streaming, reasoning accordions, follow-up chips, model routing — live in the sibling [`style-chat`](../style-chat) skill.
 
 ## Install
 
