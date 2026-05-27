@@ -12,6 +12,7 @@ Each skill lives in `skills/<name>/` with its own `SKILL.md` and `README.md`. Th
 | [`add-auth-db`](./skills/add-auth-db) | `/onex:add-auth-db` | Add Better Auth + a Neon Postgres database to a Next.js app using raw SQL (no ORM) — migration runner, admin seeder, email/magic-link/OTP auth, and a login dialog. |
 | [`style`](./skills/style) | `/onex:style` | Audit and refactor a module's UI against an opinionated flat-design house style — no shadows, dark/light-safe tokens, consistent sections, dialogs, drawers, text areas, and scrolling. |
 | [`style-chat`](./skills/style-chat) | `/onex:style-chat` | Style and structure a chat / assistant UI — composer behavior (Enter newline, ⌘+Enter sends), always-visible bottom input with `+` attachment menu, message timestamp/copy/edit, streaming with auto-scroll, reasoning-model "Thinking…" accordions, header New chat + Delete, suggestion chips, and lightweight-then-reasoning model routing. |
+| [`style-hover-effects`](./skills/style-hover-effects) | `/onex:style-hover-effects` | Standardize hover affordances — color-not-geometry (no `translate`/`scale`/`zoom`/`rotate`), defaults per element type (button / card / row / icon button / chip / link variants), `transition-colors` (never `transition-all`), and anti-patterns like "card lifts on hover". |
 | [`style-auth-ui`](./skills/style-auth-ui) | `/onex:style-auth-ui` | Style the OAuth / social sign-in buttons of an app's auth UI — official provider icons and brand colors, button layout and sizing, where they sit on the login page and auth dialog, and the loading/error states. |
 | [`setup-agent`](./skills/setup-agent) | `/onex:setup-agent` | Plan and scaffold an AI agent on top of the six modern agent protocols — MCP (tools), A2A (agent-to-agent), UCP (commerce discovery), AP2 (agent payments), A2UI (interactive UI primitives), and AGUI (event streaming). Locks framework (Claude/OpenAI Agent SDK) and commerce/UI/multi-agent scope first, writes a plan to `docs/`, then scaffolds protocol-by-protocol on confirmation. |
 | [`rewrite`](./skills/rewrite) | `/onex:rewrite` | Audit and rewrite content to remove AI writing patterns — em dashes, hollow intensifiers, vocabulary tells (delve, leverage, robust…), template phrases, hashtag stuffing, chatbot artifacts, and structural uniformity. Detect-only mode and six context profiles (`linkedin`, `blog`, `technical-blog`, `investor-email`, `docs`, `casual`). |
@@ -66,6 +67,7 @@ skills/
     ├── add-auth-db/SKILL.md
     ├── style/SKILL.md
     ├── style-chat/SKILL.md
+    ├── style-hover-effects/SKILL.md
     ├── style-auth-ui/SKILL.md
     ├── setup-agent/SKILL.md
     └── rewrite/SKILL.md

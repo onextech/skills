@@ -1,6 +1,6 @@
 # style
 
-A Claude Code skill that audits and refactors the UI of a module against an opinionated **flat-design house style** — no shadows, restrained radii, color-driven interactions, dark/light-safe tokens, and consistent conventions for sections, dialogs, drawers, text areas, and scrolling. (Chat / assistant UIs are covered separately by the sibling [`style-chat`](../style-chat) skill.)
+A Claude Code skill that audits and refactors the UI of a module against an opinionated **flat-design house style** — no shadows, restrained radii, dark/light-safe tokens, and consistent conventions for sections, dialogs, drawers, text areas, and scrolling. (Hover affordances live in the sibling [`style-hover-effects`](../style-hover-effects) skill; chat / assistant UIs in [`style-chat`](../style-chat).)
 
 Ships in the [`onex`](../../README.md) plugin — invoked as **`/onex:style`**.
 
@@ -16,10 +16,8 @@ Trigger it with `/onex:style` (or "apply flat UI", "apply my UI guidelines", "cl
 ## The guideline categories
 
 - **A. Flat surfaces** — no shadows, no `shadow-lg`; cards have no shadow/border; no `rounded-xl`+; buttons borderless unless secondary.
-- **B. Hover & motion** — hover changes color, never geometry; no `translate`/`scale`/`zoom` on hover.
 - **C. Spacing & gaps** — `gap-1` for icon-button groups and icon+text inside buttons.
 - **D. Color & theming** — no hardcoded text colors; `text-foreground` / `text-muted-foreground` / paired tokens for dark/light safety.
-- **E. Links** — always a hover affordance, preferring a color shift to `primary`.
 - **F. Section architecture** — `py` not `my`, a `className` prop merged with `cn()`, a centralized `container`.
 - **G. Scroll-in animations** — shared `useInViewAnimation` hook + `fadeInUp`, staggered, with a reduced-motion fallback.
 - **H. Dialogs** — `sm:`-prefixed width, close X aligned with the title, CSS scroll (no `ScrollArea`), pinned footer, overflow buttons in a `⋮` menu.
@@ -27,7 +25,9 @@ Trigger it with `/onex:style` (or "apply flat UI", "apply my UI guidelines", "cl
 - **J. Text areas** — auto-grow, min ~3 rows, max-height with inner scroll, ⌘+Enter submit with a `kbd` hint.
 - **K. Drawers** — true full-screen, top-right close, no top dimmer, slides up from the bottom.
 
-> Chat / assistant UIs — composer behavior, streaming, reasoning accordions, follow-up chips, model routing — live in the sibling [`style-chat`](../style-chat) skill.
+> **Hover affordances** — color-not-geometry, defaults per element type, link hover, anti-patterns — live in the sibling [`style-hover-effects`](../style-hover-effects) skill.
+>
+> **Chat / assistant UIs** — composer behavior, streaming, reasoning accordions, follow-up chips, model routing — live in the sibling [`style-chat`](../style-chat) skill.
 
 ## Install
 

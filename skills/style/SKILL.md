@@ -1,5 +1,5 @@
 ---
-description: Audit and refactor the UI of a specified module, feature, or page against an opinionated flat-design system — no shadows, restrained border radii, color-driven (not motion-driven) hover, dark/light-safe color tokens, a consistent landing-page section architecture, scroll-in animations, and house conventions for dialogs, drawers, text areas, and horizontal scroll. (For chat / assistant UIs, see the sibling `/onex:style-chat` skill.) Confirms scope first — asks which module and whether it's the entire app — if the user doesn't name one. Use when the user says "/onex:style", "apply flat UI", "apply my UI guidelines", "clean up the UI", "flatten the design", "make the UI consistent", or asks to bring a module in line with the house style.
+description: Audit and refactor the UI of a specified module, feature, or page against an opinionated flat-design system — no shadows, restrained border radii, dark/light-safe color tokens, a consistent landing-page section architecture, scroll-in animations, and house conventions for dialogs, drawers, text areas, and horizontal scroll. (Hover affordances live in the sibling `/onex:style-hover-effects` skill; chat / assistant UIs in `/onex:style-chat`.) Confirms scope first — asks which module and whether it's the entire app — if the user doesn't name one. Use when the user says "/onex:style", "apply flat UI", "apply my UI guidelines", "clean up the UI", "flatten the design", "make the UI consistent", or asks to bring a module in line with the house style.
 ---
 
 # /onex:style — Apply the flat-UI house style
@@ -8,7 +8,7 @@ description: Audit and refactor the UI of a specified module, feature, or page a
 
 It **applies** the guidelines — it edits the files in scope — and reports what changed, grouped by category. It changes styling and structure only; it never alters behavior, copy, or data flow.
 
-> **Chat / assistant UIs are out of scope here.** Several chat conventions are behavioral, not cosmetic, so they live in a sibling skill: [`/onex:style-chat`](../style-chat). Run that one for chat surfaces, and this one for everything else.
+> **Hover affordances** (buttons, links, cards, icon buttons, rows) live in the sibling [`/onex:style-hover-effects`](../style-hover-effects) skill — the contract is the same flat-design DNA, but it's substantial enough to deserve its own skill. **Chat / assistant UIs** live in [`/onex:style-chat`](../style-chat) — several chat conventions are behavioral, not cosmetic. Run those sibling skills for their respective surfaces; run this one for everything else.
 
 ## How to run
 
@@ -50,11 +50,9 @@ Close with a summary grouped by category (A–K), each item naming the files tou
 - **No `border` on buttons** — except a **secondary** button, where a border is its defining trait.
 - **Restrained radius.** Avoid `rounded-xl` and larger (`rounded-2xl`, `rounded-3xl`). Stay on the theme radius — `rounded-md` / `rounded-lg` — and keep it consistent across the module.
 
-### B. Hover & motion
+### B. Hover & motion — moved
 
-- **Hover changes color, not geometry.** Use background-color shifts (`hover:bg-muted`, `hover:bg-accent`) as the default hover affordance.
-- **No motion-based hover.** No `hover:translate-*`, `hover:-translate-y-*`, `hover:scale-*`, `hover:zoom`, or position changes — on anything, and especially not on images or cards.
-- Hover should feel like a state change, never like the element moved.
+Hover affordances now live in the sibling skill **[`/onex:style-hover-effects`](../style-hover-effects)** — color-not-geometry, defaults per element type (button / card / row / icon button / chip), link hover, and anti-patterns. Run it whenever the scope has interactive surfaces.
 
 ### C. Spacing & gaps
 
@@ -71,12 +69,9 @@ The module must be legible in **both** light and dark mode. Hardcoded text color
 - **Text on a colored surface:** use the paired token — `text-primary-foreground` on `bg-primary`, `text-card-foreground` on `bg-card`, etc.
 - Use shadcn CSS variables throughout; the theme owns the actual colors.
 
-### E. Links
+### E. Links — moved
 
-- **Every link gets a hover affordance** — a link that doesn't react on hover is a bug.
-- **Default hover: a color shift toward `text-primary`.** Prefer the color change.
-- **Underline on hover** — use it for inline links inside prose/body copy (where the link isn't otherwise obvious). For standalone or nav links, the color shift alone is enough; an underline there is optional.
-- No movement on link hover (see Section B).
+Link styling is hover-driven, so it lives with the rest of the hover contract in **[`/onex:style-hover-effects`](../style-hover-effects)** — color shift toward `text-primary`, `hover:underline` for inline prose links only, and no movement on link hover.
 
 ### F. Section & landing-page architecture
 
