@@ -16,6 +16,7 @@ Each skill lives in `skills/<name>/` with its own `SKILL.md` and `README.md`. Th
 | [`style-hover-effects`](./skills/style-hover-effects) | `/onex:style-hover-effects` | Standardize hover affordances — color-not-geometry (no `translate`/`scale`/`zoom`/`rotate`), defaults per element type (button / card / row / icon button / chip / link variants), `transition-colors` (never `transition-all`), and anti-patterns like "card lifts on hover". |
 | [`style-auth-ui`](./skills/style-auth-ui) | `/onex:style-auth-ui` | Style the OAuth / social sign-in buttons of an app's auth UI — official provider icons and brand colors, button layout and sizing, where they sit on the login page and auth dialog, and the loading/error states. |
 | [`setup-agent`](./skills/setup-agent) | `/onex:setup-agent` | Plan and scaffold an AI agent on top of the six modern agent protocols — MCP (tools), A2A (agent-to-agent), UCP (commerce discovery), AP2 (agent payments), A2UI (interactive UI primitives), and AGUI (event streaming). Locks framework (Claude/OpenAI Agent SDK) and commerce/UI/multi-agent scope first, writes a plan to `docs/`, then scaffolds protocol-by-protocol on confirmation. |
+| [`council`](./skills/council) | `/onex:council` | Pressure-test a real decision through a 5-advisor council (Contrarian, First Principles Thinker, Expansionist, Outsider, Executor), anonymous peer review, and a chairman's synthesis — based on Karpathy's LLM Council. Saves a visual HTML briefing and a full markdown transcript to `docs/council/`. |
 | [`rewrite`](./skills/rewrite) | `/onex:rewrite` | Audit and rewrite content to remove AI writing patterns — em dashes, hollow intensifiers, vocabulary tells (delve, leverage, robust…), template phrases, hashtag stuffing, chatbot artifacts, and structural uniformity. Detect-only mode and six context profiles (`linkedin`, `blog`, `technical-blog`, `investor-email`, `docs`, `casual`). |
 
 ## Install
@@ -72,6 +73,7 @@ skills/
     ├── style-hover-effects/SKILL.md
     ├── style-auth-ui/SKILL.md
     ├── setup-agent/SKILL.md
+    ├── council/SKILL.md
     └── rewrite/SKILL.md
 ```
 
