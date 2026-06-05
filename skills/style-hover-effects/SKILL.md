@@ -21,10 +21,11 @@ It changes styling only — same markup, same behavior, same props.
 ## Golden rules
 
 1. **Hover changes color, not geometry.** Background-color or text-color shifts only — never position, size, rotation, or skew.
-2. **Every interactive element gets a hover affordance.** A clickable thing that doesn't react on hover is a bug.
+2. **Every interactive element gets a hover affordance AND `cursor-pointer`.** A clickable thing that doesn't react on hover — or that shows the default arrow cursor — is a bug. Tailwind v3 / shadcn preflight resets `<button>` to `cursor: default`, so you must add `cursor-pointer` explicitly. See the **Cursor: every button needs cursor-pointer** section below.
 3. **Background shift for surfaces (buttons, cards, rows). Color shift for text (links, icons).**
 4. **Use `transition-colors`, never `transition-all`** — the transition is scoped to color so a future refactor can't accidentally animate layout.
 5. **Hover should feel like a state change, never like the element moved.**
+6. **Never co-locate `style={{ backgroundColor }}` with `hover:bg-*` on the same element.** Inline style wins on `:hover` and the hover class is dead. Same for `color` / `borderColor`. See the **Specificity gotcha** section below.
 
 ## The core principle: color, not geometry
 
@@ -47,15 +48,19 @@ No movement at all — on anything, and **especially** on images and cards. A "l
 
 ## Defaults per element type
 
+Every interactive row below also gets `cursor-pointer` (omitted from the table for brevity — see the **Cursor** section).
+
 | Element | Resting | Hover | Transition |
 |---|---|---|---|
-| **Primary button** | `bg-primary text-primary-foreground` | `bg-primary/90` (or `hover:bg-primary/90`) | `transition-colors` |
-| **Secondary button** (bordered) | `border bg-background` | `bg-muted` | `transition-colors` |
-| **Ghost / nav button** | `bg-transparent` | `bg-muted` | `transition-colors` |
-| **Icon button** | `text-muted-foreground` | `text-foreground` + `bg-muted` | `transition-colors` |
-| **Card / list item** | `bg-card` (or `bg-background`) | `bg-muted` | `transition-colors` |
-| **Table row** | `bg-background` | `bg-muted/50` | `transition-colors` |
-| **Chip / pill** | `border bg-background` | `bg-muted` | `transition-colors` |
+| **Primary button** | `cursor-pointer bg-primary text-primary-foreground` | `bg-primary/90` (or `hover:bg-primary/90`) | `transition-colors` |
+| **Secondary button** (bordered) | `cursor-pointer border bg-background` | `bg-muted` | `transition-colors` |
+| **Ghost / nav button** | `cursor-pointer bg-transparent` | `bg-muted` | `transition-colors` |
+| **Icon button** | `cursor-pointer text-muted-foreground` | `text-foreground` + `bg-muted` | `transition-colors` |
+| **Tab (Link or button)** | `cursor-pointer` + variant per active | active: stronger of the same tint · inactive: `bg-muted` | `transition-colors` |
+| **Card / list item (clickable)** | `cursor-pointer bg-card` (or `bg-background`) | `bg-muted` | `transition-colors` |
+| **Table row** | `bg-background` (add `cursor-pointer` only if the whole row is clickable) | `bg-muted/50` | `transition-colors` |
+| **Chip / pill (clickable)** | `cursor-pointer border bg-background` | `bg-muted` | `transition-colors` |
+| **Pseudo-tab `<label>` wrapping hidden radio** | `cursor-pointer` + variant per checked | active: stronger tint · inactive: `bg-muted` | `transition-colors` |
 | **Inline link (prose)** | `text-primary` | `text-primary underline` (color stays, underline appears) | `transition-colors` |
 | **Standalone / nav link** | `text-foreground` | `text-primary` | `transition-colors` |
 | **Muted text link** | `text-muted-foreground` | `text-foreground` | `transition-colors` |
@@ -97,9 +102,9 @@ A standalone icon (close, copy, delete, ⋮) carries its color in the icon and g
 
 ```tsx
 <button
-  className="inline-flex h-8 w-8 items-center justify-center rounded-md
+  className="inline-flex h-8 w-8 cursor-pointer items-center justify-center rounded-md
              text-muted-foreground transition-colors
-             hover:text-foreground hover:bg-muted"
+             hover:bg-muted hover:text-foreground"
 >
   <X className="h-4 w-4" />
 </button>
@@ -120,10 +125,98 @@ Two things move together: the icon goes muted → strong, and a soft surface app
 - **Don't remove the focus ring** when overriding hover. `:focus-visible` and `:hover` are different states and both must remain visible — keyboard users rely on the ring.
 - **Touch devices have no hover** — never put critical affordances (visibility of an action, the answer to "is this clickable?") behind hover alone. The resting state must already read as interactive (cursor, color contrast, label).
 
+## Cursor: every button needs `cursor-pointer`
+
+**Tailwind v3 / shadcn preflight resets `<button>` to `cursor: default`.** This is by design (they argue the browser default is wrong) but it means every interactive `<button>` you ship looks dead until you opt back in. Links keep the pointer cursor; buttons do not.
+
+```tsx
+// ❌ button hovers but the cursor stays as an arrow — looks broken
+<button className="rounded-md bg-[#066377] text-white hover:bg-[#055266]">Add</button>
+
+// ✅ pointer + hover together — feels alive
+<button className="cursor-pointer rounded-md bg-[#066377] text-white hover:bg-[#055266]">Add</button>
+```
+
+### When to add it
+
+- **Every `<button>`** in your codebase, full stop. No exceptions for primary / secondary / icon / tab buttons. This includes `<button>` styled as a tab via `aria-current`.
+- **Every `<a>` / `<Link>` that's styled as a button** (`rounded-md border …` etc.). Native `<a>` already gets the pointer from the browser, but it doesn't hurt to be explicit, and the rule is easier to enforce uniformly.
+- **`<label>` elements that wrap a hidden radio/checkbox** and act like a pseudo-button (e.g. audience pills, tab strips) — these don't get pointer by default either.
+- **Card-style `<div>` / `<form>` wrappers** that the whole card is clickable on — add `cursor-pointer` to the wrapper.
+
+### When NOT to add it
+
+- `disabled:cursor-not-allowed` (or just letting `disabled` flip the cursor via the browser) for disabled states. The disabled cursor should beat the pointer cursor — list `cursor-pointer` first so `disabled:cursor-not-allowed` wins in source order.
+- Truly non-interactive surfaces (badges, pills, static cards) — don't lie about interactivity.
+
+### Quick checklist
+
+- [ ] Every `<button>` in the file has `cursor-pointer` (grep for `<button` and verify).
+- [ ] Every `<a>` / `<Link>` styled as a button has `cursor-pointer`.
+- [ ] Every `<label>` wrapping a hidden radio/checkbox (pseudo-tabs) has `cursor-pointer`.
+- [ ] Disabled-state cursor is `disabled:cursor-not-allowed` and appears AFTER `cursor-pointer` in the class string.
+
+## Specificity gotcha: inline `style` beats every Tailwind `hover:` class
+
+This is the **single most common silent failure** of "I added a hover but it doesn't work." If a component sets a color on the element via `style={{ backgroundColor: ... }}` (or `color`, `borderColor`), **a Tailwind `hover:bg-*` / `hover:text-*` / `hover:border-*` class on the same element will never activate.** Inline styles have the highest CSS specificity; the `:hover` selector on a class can never override them.
+
+```tsx
+// ❌ hover is dead — `style.backgroundColor` beats `hover:bg-[#055266]`
+<button
+  className="rounded-md transition-colors hover:bg-[#055266]"
+  style={{ backgroundColor: "#066377", color: "white" }}
+/>
+
+// ✅ hover works — color is in the class, nothing fights `:hover`
+<button className="rounded-md bg-[#066377] text-white transition-colors hover:bg-[#055266]" />
+```
+
+The same trap applies to `bg-white`, `bg-transparent`, even `borderColor` — if the resting value is inline, no `hover:*` Tailwind class on that property will fire.
+
+### How to spot it
+
+Grep the file for both patterns on the same element:
+- `style={{ ... backgroundColor` (or `color`, `borderColor`)
+- `hover:bg-` / `hover:text-` / `hover:border-`
+
+If both appear on the same element, the hover is dead. This is the first thing to check when a user reports "hover doesn't work" — don't assume the class is misspelled or the transition is missing.
+
+### Fixes (pick one, in order of preference)
+
+1. **Preferred: move the color into a Tailwind class.** Use arbitrary values (`bg-[#066377]`, `text-[#154359]`, `border-[#15435933]`) for non-token colors. Delete the matching property from `style`. Now `hover:bg-...` works because nothing else is setting `background-color` at higher specificity.
+
+2. **Dynamic color (prop with many possible values, not a small variant set):** use `onMouseEnter` / `onMouseLeave` to mutate the inline `style.backgroundColor` directly. JS-driven inline mutation works because it replaces the inline value at the source; `transition-colors` still animates it.
+
+   ```tsx
+   const DARKER: Record<string, string> = {
+     "#066377": "#055266",
+     "#B91C1C": "#9A1818",
+   };
+   <button
+     className="transition-colors"
+     style={{ backgroundColor: colour }}
+     onMouseEnter={(e) => {
+       e.currentTarget.style.backgroundColor = DARKER[colour] ?? colour;
+     }}
+     onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = colour; }}
+   />
+   ```
+
+3. **CSS-in-JS with `&:hover`** (styled-components, emotion, vanilla-extract) — selector-based hover works because the library generates real CSS rules, not inline `style`. Verify in DevTools that the resting color comes from a class, not `style`.
+
+### Don't
+
+- Don't add `!important` to a Tailwind hover class to win the specificity fight. It works but signals the styling architecture is wrong; the next dev will copy the pattern and the codebase rots.
+- Don't pretend `:hover` inline-style hacks exist — there's no such thing. You need option 1, 2, or 3.
+
 ## Anti-patterns
 
 | Pattern | Why it's wrong | Fix |
 |---|---|---|
+| `<button>` without `cursor-pointer` | Tailwind v3 / shadcn preflight resets button cursor to `default` — looks dead | Add `cursor-pointer` (see the Cursor section above). |
+| `style={{ backgroundColor: ... }}` + `hover:bg-*` on same element | **Inline style always wins on `:hover`; the hover class is dead.** | Move color into a Tailwind class (option 1), or mutate inline style via `onMouseEnter`/`onMouseLeave` (option 2) — see the specificity-gotcha section above. |
+| `style={{ color: ... }}` + `hover:text-*` on same element | Same — inline wins | Move color to class. |
+| `style={{ borderColor: ... }}` + `hover:border-*` on same element | Same — inline wins | Move border color to class (e.g. `border-[#15435933]`). |
 | `hover:scale-105` on a card | Geometry shift; reads as "lift" | `hover:bg-muted` |
 | `hover:-translate-y-1` on an image | Image hops; jarring | Drop it; let the surrounding card surface hover |
 | `hover:rotate-3` on an icon | Cuteness ≠ affordance | Color shift only |
@@ -138,8 +231,12 @@ Two things move together: the icon goes muted → strong, and a soft surface app
 **"This card jumps when I hover it."**
 Remove `hover:scale-*` / `hover:-translate-y-*` / `hover:shadow-*`. Add `transition-colors hover:bg-muted`.
 
-**"My buttons don't react."**
-Pick the row from the defaults table that matches the variant. Most ghost/secondary buttons want `hover:bg-muted`.
+**"My buttons don't react / the cursor stays as an arrow."**
+Two things to check in order:
+1. **Cursor**: does the `<button>` have `cursor-pointer`? Tailwind v3 / shadcn preflight resets it, so you must opt in. See the Cursor section.
+2. **Specificity gotcha**: grep the file for `style={{` on the same element as the `hover:bg-*` class. If they're co-located, the inline style is killing the hover (see the specificity-gotcha section).
+
+If both are clean, pick the row from the defaults table that matches the variant. Most ghost/secondary buttons want `hover:bg-muted`.
 
 **"The link is invisible until you hover."**
 Resting state needs to read as a link. Either keep `text-primary` at rest (inline prose) or rely on context (standalone nav). The hover is the *secondary* affordance, not the only one.
@@ -149,6 +246,8 @@ Wrap them in a `<button>` and apply the icon-button row: `text-muted-foreground 
 
 ## Review checklist
 
+- [ ] **Every `<button>` has `cursor-pointer`** — Tailwind v3 / shadcn preflight resets button cursor to default. Same for `<a>` / `<Link>` / `<label>` / `<div>` that acts as a button.
+- [ ] **No element has both `style={{ backgroundColor: ... }}` AND `hover:bg-*`** — inline style kills the hover. Same for `color` + `hover:text-*` and `borderColor` + `hover:border-*`.
 - [ ] Every clickable surface (button, link, card, row, chip, icon button) has a hover state.
 - [ ] No `hover:translate-*`, `hover:scale-*`, `hover:rotate-*`, `hover:zoom-*`, or `hover:-translate-*` anywhere in scope.
 - [ ] No `hover:shadow-*` (shadows are out per `/onex:style` §A).
