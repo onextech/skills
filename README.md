@@ -11,6 +11,7 @@ Each skill lives in `skills/<name>/` with its own `SKILL.md` and `README.md`. Th
 | [`ideate`](./skills/ideate) | `/onex:ideate` | Brainstorm gaps, loopholes, and improvements across a module or app — reviewed as a PM, returned as a categorized, severity-marked numbered list you can pick from. |
 | [`add-auth-db`](./skills/add-auth-db) | `/onex:add-auth-db` | Add Better Auth + a Neon Postgres database to a Next.js app using raw SQL (no ORM) — migration runner, admin seeder, email/magic-link/OTP auth, and a login dialog. |
 | [`add-terms-privacy`](./skills/add-terms-privacy) | `/onex:add-terms-privacy` | Add Terms of Service + Privacy Policy pages to a Next.js App Router app — gathers every company detail (entity, registration no./UEN, address, governing law, contact emails) at run time so nothing is hardcoded, detects the app's data processors for an accurate Privacy sharing list, scaffolds `app/(legal)/terms` + `/privacy`, and offers to wire consent links + a footer. |
+| [`add-pwa`](./skills/add-pwa) | `/onex:add-pwa` | Turn a Next.js App Router app into an installable PWA using the OnEx defaults — web app manifest, code-generated brand icons (favicon, apple-touch, 192/512/maskable via `next/og`), an app-shell service worker (network-first nav, stale-while-revalidate assets, `/offline` fallback — no Workbox/Serwist), a dismissible install banner (Chromium + iOS), PWA metadata/viewport, `sw.js` security headers, and Vitest contract tests. Asks only for app name + domain; no web push. |
 | [`style`](./skills/style) | `/onex:style` | Audit and refactor a module's UI against an opinionated flat-design house style — no shadows, dark/light-safe tokens, consistent sections, dialogs, drawers, text areas, and scrolling. |
 | [`style-chat`](./skills/style-chat) | `/onex:style-chat` | Style and structure a chat / assistant UI — composer behavior (Enter newline, ⌘+Enter sends), always-visible bottom input with `+` attachment menu, message timestamp/copy/edit, streaming with auto-scroll, reasoning-model "Thinking…" accordions, header New chat + Delete, suggestion chips, and lightweight-then-reasoning model routing. |
 | [`setup-chat`](./skills/setup-chat) | `/onex:setup-chat` | Wire a chat UI with the OnEx default stack — `react-markdown` + `remark-gfm`, `shiki` code blocks, Copy + Regenerate actions, multi-conversation + history (Postgres / raw SQL), Vercel AI SDK v6 + **AI Gateway** (`anthropic/claude-sonnet-4-6` default) via a streaming Route Handler + `useChat`, and a ChatGPT-style left-sidebar + main-pane layout. Pairs with `style-chat`. |
@@ -69,6 +70,7 @@ skills/
     ├── ideate/SKILL.md
     ├── add-auth-db/SKILL.md
     ├── add-terms-privacy/SKILL.md
+    ├── add-pwa/SKILL.md
     ├── style/SKILL.md
     ├── style-chat/SKILL.md
     ├── setup-chat/SKILL.md
