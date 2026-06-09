@@ -16,6 +16,33 @@ The patterns are useful as a signal — both for cleaning up your own writing an
 
 In short: signals, not proof. Worth acting on; not worth ruining someone's day over.
 
+## House rules — the AI-writing tells that matter most
+
+Everything below is the short version of this skill. If you only enforce one section, enforce this one.
+
+**Banned phrases — never ship these:**
+- "delve into" → "look at"
+- "unpack" → "break down"
+- "this signals that" / "this underscores" → state the thing directly
+- "navigate the complexities of" → "deal with" / name the actual problem
+- "in an ever-changing landscape" → cut, or name the specific change
+- "synergies" → describe the actual combined effect
+- "leverage our learnings" → "use what we learned"
+- "holistic approach" → say what's actually included
+
+**Banned structural patterns:**
+- **Bold word + colon + explanation.** "Clarity: Ensure your memo is clear..." Strip the bold label and write the sentence as a plain claim. (This is broader than inline-header lists below — it applies to any sentence that front-loads a bolded one-word topic before a colon.)
+- **The corporate therapist voice.** "A powerful opportunity to lean into our strengths and foster a culture of accountability." It sounds caring and says nothing. Replace with the concrete action and who does it.
+- **Neat-little-bow conclusions.** "Ultimately, the goal is to build a more resilient and agile organization." If the closing line could end a memo at any company on earth, cut it and replace it with something specific to *this* situation — or end on the last real point.
+- **Profound-sounding paragraphs with no summarizable claim.** If you can't restate the paragraph as one checkable sentence, it's filler dressed as insight. Cut it or rewrite it around the actual point.
+
+**Write like a human:**
+- State opinions directly. Connect ideas with the real causal link, not filler: "Customers are doing X, so we need to change Y" — not "In an evolving landscape, it's important to consider Y."
+- If your conclusion could apply to any company on earth, it's not a conclusion. Replace it with something only true here.
+- **Read every draft out loud. If you wouldn't say it in a real conversation, rewrite it.** This is the final gate — apply it to your rewritten output before returning it.
+
+The detailed rule catalog below expands on all of this. When a piece trips a house rule, cite the house rule by name in your "Issues found" list.
+
 ## Modes
 
 This skill operates in one of two modes:
@@ -87,6 +114,11 @@ Words are organized into three tiers based on how reliably they signal AI-genera
 | leverage (verb) | use |
 | pivotal | important, key, critical |
 | underscores | highlights, shows |
+| this signals that / this underscores | state the thing directly |
+| navigate the complexities of | deal with, work through (or name the specific problem) |
+| in an ever-changing landscape / in an ever-evolving landscape | (cut, or name the specific change) |
+| leverage our learnings | use what we learned |
+| holistic approach | (say what's actually included) |
 | meticulous / meticulously | careful, detailed, precise |
 | seamless / seamlessly | smooth, easy, without friction |
 | game-changer / game-changing | describe what specifically changed and why it matters |
@@ -286,6 +318,11 @@ These slot-fill constructions signal that a sentence was generated, not written.
 
 ### Generic conclusions
 - "The future looks bright," "Only time will tell," "One thing is certain," "As we move forward" — these are filler disguised as conclusions. Cut them. If the piece needs a closing thought, make it specific to the argument.
+- **The any-company-on-earth test.** "Ultimately, the goal is to build a more resilient and agile organization." "At the end of the day, it's about delivering value to our customers." These neat-little-bow closers could end a memo at any company on earth, which means they say nothing about this one. If a conclusion would survive a find-and-replace of the company name, cut it and end on the last real point — or replace it with something only true here.
+
+### Corporate therapist voice
+- "A powerful opportunity to lean into our strengths and foster a culture of accountability." "This is a chance to come together, embrace change, and unlock our full potential." This is the register of a wellness deck: warm, affirming, and empty. It performs care without naming an action, an owner, or a measurable outcome.
+- The fix: replace the feeling with the mechanism. Who does what, by when, and how you'll know it worked. "We're missing deadlines because no one owns the release calendar — Priya owns it starting Monday" beats any amount of "fostering accountability."
 
 ### Chatbot artifacts
 - "I hope this helps!", "Certainly!", "Absolutely!", "Great question!", "Feel free to reach out," "Let me know if you need anything else" — these are conversational tics from chat interfaces, not writing. Remove entirely.
@@ -309,8 +346,14 @@ These slot-fill constructions signal that a sentence was generated, not written.
 ### False ranges
 - AI creates false breadth by pairing unrelated extremes: "from the Big Bang to dark matter," "from ancient civilizations to modern startups." These sound sweeping but say nothing. List the actual topics or pick the one that matters.
 
-### Inline-header lists
+### Inline-header lists / bold-word-colon-explanation
 - Bullet lists where each item starts with a bold header that repeats itself: "**Performance:** Performance improved by..." Strip the bold header and write the point directly. If the list items need headers, they should probably be paragraphs.
+- The same pattern in prose: a bolded one-word topic, a colon, then an explanation that restates it. "**Clarity:** Ensure your memo is clear and easy to follow." The bold label is doing the work a real sentence should do. Strip it and write the claim: "Cut anything in the memo a reader could misread." Flag this anywhere it appears, not just in lists.
+
+### Profound-sounding paragraphs with no claim
+- Paragraphs that sound wise but contain nothing you could summarize, quote, or act on. The test: try to restate the paragraph as one checkable sentence. If you can't, it's filler dressed as insight.
+- Common shape: abstract nouns stacked into a sentence that gestures at importance ("It's about building the kind of culture where people feel empowered to do their best work") without naming a person, action, number, or decision.
+- The fix: find the one real claim hiding inside, write that, and delete the rest. If there's no real claim, delete the whole paragraph — it was padding.
 
 ### Title case headings
 - AI over-capitalizes headings: "Strategic Negotiations And Key Partnerships" instead of "Strategic negotiations and key partnerships." Use sentence case for subheadings. Title case only for the piece's main title, if at all.
@@ -429,9 +472,12 @@ Not all AI-isms are equal. When doing a quick pass or triaging a large document,
 - Real/actual adjective inflation ("real on-chain tokenomics")
 - Bullet lists of bare noun phrases (5+ short adj+noun items, no verbs)
 - Tier 3 phrase clustering (≥3 distinct boilerplate phrases in one piece)
+- Bold-word-colon-explanation in prose ("**Clarity:** Ensure your memo is clear...")
+- Corporate therapist voice ("a powerful opportunity to foster a culture of accountability")
+- Profound-sounding paragraphs with no summarizable claim
 
 ### P2 — Stylistic polish (fix when time allows)
-- Generic conclusions ("The future looks bright")
+- Generic conclusions ("The future looks bright"), including any-company-on-earth bow-tie closers
 - Compulsive rule of three
 - Uniform paragraph length
 - Copula avoidance (serves as, features, boasts)
@@ -527,7 +573,7 @@ The full rewritten content. Preserve the original structure, intent, and all spe
 A brief summary of the major edits made. Not every word, just the meaningful changes.
 
 **4. Second-pass audit**
-Re-read the rewritten version from section 2. Identify any remaining AI tells that survived the first pass — recycled transitions, lingering inflation, copula avoidance, filler phrases, or anything else from the categories above. Fix them, return the corrected text inline, and note what changed in this pass. If the rewrite is clean, say so.
+Re-read the rewritten version from section 2. Identify any remaining AI tells that survived the first pass — recycled transitions, lingering inflation, copula avoidance, filler phrases, or anything else from the categories above. Then apply the read-aloud gate: go line by line and ask whether you'd actually say it in a real conversation. Anything you wouldn't say out loud, rewrite. Fix everything, return the corrected text inline, and note what changed in this pass. If the rewrite is clean, say so.
 
 ### Detect mode
 
