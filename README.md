@@ -9,6 +9,7 @@ Each skill lives in `skills/<name>/` with its own `SKILL.md` and `README.md`. Th
 | Skill | Invoke | What it does |
 |---|---|---|
 | [`ideate`](./skills/ideate) | `/onex:ideate` | Brainstorm gaps, loopholes, and improvements across a module or app — reviewed as a PM, returned as a categorized, severity-marked numbered list you can pick from. |
+| [`pdpa-audit`](./skills/pdpa-audit) | `/onex:pdpa-audit` | Audit an app or module against Singapore's PDPA — builds a personal-data inventory from the real schema, code, and integration surface (SDKs, analytics, LLM providers, Sentry extras, logs), then tests it against the data protection obligations, the NRIC rules and the 31 Dec 2026 authentication deadline, Do Not Call, breach notification, and cross-border transfer. Returns a severity-marked numbered finding list with paragraph-level PDPC citations and a fix per item. |
 | [`add-auth-db`](./skills/add-auth-db) | `/onex:add-auth-db` | Add Better Auth + a Neon Postgres database to a Next.js app using raw SQL (no ORM) — migration runner, admin seeder, email/magic-link/OTP auth, and a login dialog. |
 | [`add-terms-privacy`](./skills/add-terms-privacy) | `/onex:add-terms-privacy` | Add Terms of Service + Privacy Policy pages to a Next.js App Router app — gathers every company detail (entity, registration no./UEN, address, governing law, contact emails) at run time so nothing is hardcoded, detects the app's data processors for an accurate Privacy sharing list, scaffolds `app/(legal)/terms` + `/privacy`, and offers to wire consent links + a footer. |
 | [`add-pwa`](./skills/add-pwa) | `/onex:add-pwa` | Turn a Next.js App Router app into an installable PWA using the OnEx defaults — web app manifest, code-generated brand icons (favicon, apple-touch, 192/512/maskable via `next/og`), an app-shell service worker (network-first nav, stale-while-revalidate assets, `/offline` fallback — no Workbox/Serwist), a dismissible install banner (Chromium + iOS), PWA metadata/viewport, `sw.js` security headers, and Vitest contract tests. Asks only for app name + domain; no web push. |
@@ -69,6 +70,7 @@ skills/
 │   └── marketplace.json   # marketplace catalog listing the plugin
 └── skills/
     ├── ideate/SKILL.md
+    ├── pdpa-audit/SKILL.md
     ├── add-auth-db/SKILL.md
     ├── add-terms-privacy/SKILL.md
     ├── add-pwa/SKILL.md
