@@ -8,6 +8,7 @@ Each skill lives in `skills/<name>/` with its own `SKILL.md` and `README.md`. Th
 
 | Skill | Invoke | What it does |
 |---|---|---|
+| [`feature`](./skills/feature) | `/onex:feature` | Implement a complex feature through six gated phases — requirements, architecture, test plan (Gherkin acceptance, property-based, integration with minimal mocking), test-first module-by-module implementation, self-review, and final validation with real test output and coverage. Waits for approval of the design and test plan before writing code. |
 | [`ideate`](./skills/ideate) | `/onex:ideate` | Brainstorm gaps, loopholes, and improvements across a module or app — reviewed as a PM, returned as a categorized, severity-marked numbered list you can pick from. |
 | [`pdpa-audit`](./skills/pdpa-audit) | `/onex:pdpa-audit` | Audit an app or module against Singapore's PDPA — builds a personal-data inventory from the real schema, code, and integration surface (SDKs, analytics, LLM providers, Sentry extras, logs), then tests it against the data protection obligations, the NRIC rules and the 31 Dec 2026 authentication deadline, Do Not Call, breach notification, and cross-border transfer. Returns a severity-marked numbered finding list with paragraph-level PDPC citations and a fix per item. |
 | [`add-auth-db`](./skills/add-auth-db) | `/onex:add-auth-db` | Add Better Auth + a Neon Postgres database to a Next.js app using raw SQL (no ORM) — migration runner, admin seeder, email/magic-link/OTP auth, and a login dialog. |
@@ -69,6 +70,7 @@ skills/
 │   ├── plugin.json        # the `onex` plugin manifest
 │   └── marketplace.json   # marketplace catalog listing the plugin
 └── skills/
+    ├── feature/SKILL.md
     ├── ideate/SKILL.md
     ├── pdpa-audit/SKILL.md
     ├── add-auth-db/SKILL.md
