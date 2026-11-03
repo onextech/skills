@@ -23,6 +23,7 @@ Each skill lives in `skills/<name>/` with its own `SKILL.md` and `README.md`. Th
 | [`setup-agent`](./skills/setup-agent) | `/onex:setup-agent` | Plan and scaffold an AI agent on top of the six modern agent protocols — MCP (tools), A2A (agent-to-agent), UCP (commerce discovery), AP2 (agent payments), A2UI (interactive UI primitives), and AGUI (event streaming). Locks framework (Claude/OpenAI Agent SDK) and commerce/UI/multi-agent scope first, writes a plan to `docs/`, then scaffolds protocol-by-protocol on confirmation. |
 | [`council`](./skills/council) | `/onex:council` | Pressure-test a real decision through a 5-advisor council (Contrarian, First Principles Thinker, Expansionist, Outsider, Executor), anonymous peer review, and a chairman's synthesis — based on Karpathy's LLM Council. Saves a visual HTML briefing and a full markdown transcript to `docs/council/`. |
 | [`rewrite`](./skills/rewrite) | `/onex:rewrite` | Audit and rewrite content to remove AI writing patterns — em dashes, hollow intensifiers, vocabulary tells (delve, leverage, robust…), template phrases, hashtag stuffing, chatbot artifacts, and structural uniformity. Detect-only mode and six context profiles (`linkedin`, `blog`, `technical-blog`, `investor-email`, `docs`, `casual`). |
+| [`b2b-saas-marketing`](./skills/b2b-saas-marketing) | `/onex:b2b-saas-marketing` | Diagnose and fix B2B SaaS growth as an operator — computes max cost per booked call and LTV:CAC first, benchmarks every funnel step to find the biggest gap, checks channel and funnel fit for the price point, then prescribes from playbooks for Meta ads, creative, demo and show-rate funnels, VSLs, free trials, lifecycle email and churn, and offers, positioning and pricing. |
 
 ## Install
 
@@ -84,7 +85,8 @@ skills/
     ├── style-auth-ui/SKILL.md
     ├── setup-agent/SKILL.md
     ├── council/SKILL.md
-    └── rewrite/SKILL.md
+    ├── rewrite/SKILL.md
+    └── b2b-saas-marketing/SKILL.md
 ```
 
 ## Contributing a new skill
