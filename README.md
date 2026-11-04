@@ -97,7 +97,8 @@ skills/
 2. Optionally add `skills/<your-skill>/README.md` for a human-facing description.
 3. Add a row to the **Skills** table above.
 4. Bump `version` in `.claude-plugin/plugin.json`.
-5. Open a PR.
+5. Add an entry to `site/config/skills.ts` (category, icon, `addedIn` set to the new version).
+6. Commit and push to `main` directly — this repo doesn't use pull requests (see `CLAUDE.md`).
 
 ## License
 
