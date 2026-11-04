@@ -28,7 +28,7 @@ Each skill lives in `skills/<name>/` with its own `SKILL.md` and `README.md`. Th
 
 ## Install
 
-Add the marketplace, then install the plugin:
+Browse every skill at [onexgroup.co/skills](https://www.onexgroup.co/skills), or add the marketplace and install the plugin:
 
 ```bash
 /plugin marketplace add onextech/skills
@@ -97,7 +97,7 @@ skills/
 2. Optionally add `skills/<your-skill>/README.md` for a human-facing description.
 3. Add a row to the **Skills** table above.
 4. Bump `version` in `.claude-plugin/plugin.json`.
-5. Add an entry to `site/config/skills.ts` (category, icon, `addedIn` set to the new version).
+5. Add an entry to `apps/group/config/skills/meta.ts` in the [onex-v3](https://github.com/onextech/onex-v3) repo (category, icon, `addedIn` set to the new version). That is what the landing page at [onexgroup.co/skills](https://www.onexgroup.co/skills) reads, alongside this repo's `SKILL.md` and `README.md` files.
 6. Commit and push to `main` directly — this repo doesn't use pull requests (see `CLAUDE.md`).
 
 ## License
