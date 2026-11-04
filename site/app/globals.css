@@ -1,0 +1,126 @@
+@import "tailwindcss";
+
+/* Design D: Linear hero x Vercel grid. Dark only. */
+@theme {
+  --color-bg: #08090a;
+  --color-panel: #0f1011;
+  --color-panel-2: #16171a;
+  --color-panel-3: #1c1d21;
+  --color-fg: #f7f8f8;
+  --color-muted: #9a9fa8;
+  --color-dim: #7e838c; /* >= 4.5:1 on bg, panel and panel-2 */
+  --color-line: #1e1f23;
+  --color-brand: #7c83ff;
+  --color-ok: #4cb782;
+  --color-warn: #f2c94c;
+
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-inter-tight), var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 14px;
+
+  --animate-tilt: tilt 1.4s cubic-bezier(0.2, 0.7, 0.2, 1) 0.2s both;
+  --animate-line-in: line-in 0.4s ease both;
+
+  @keyframes tilt {
+    from { transform: rotateX(22deg); opacity: 0.2; }
+    to { transform: rotateX(8deg); opacity: 1; }
+  }
+  @keyframes line-in {
+    from { opacity: 0; transform: translateY(3px); }
+    to { opacity: 1; transform: none; }
+  }
+}
+
+html {
+  color-scheme: dark;
+  background: var(--color-bg);
+  color: var(--color-fg);
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-brand);
+  outline-offset: 2px;
+}
+
+/* Faint Vercel-style grid behind heroes, fading out from the top centre. */
+.hero-grid::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 -200px;
+  pointer-events: none;
+  background-image:
+    linear-gradient(var(--color-line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--color-line) 1px, transparent 1px);
+  background-size: 72px 72px;
+  background-position: center -1px;
+  mask-image: radial-gradient(55% 60% at 50% 25%, #000 10%, transparent 75%);
+}
+.hero-grid::after {
+  content: "";
+  position: absolute;
+  inset: -60px 0 auto;
+  height: 560px;
+  pointer-events: none;
+  background: radial-gradient(38% 50% at 50% 30%, rgb(124 131 255 / 0.16), transparent 70%);
+}
+
+.text-gradient {
+  background: linear-gradient(180deg, #fff 30%, #9da1ab 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Rendered skill READMEs. */
+.readme {
+  color: var(--color-muted);
+  font-size: 15px;
+  line-height: 1.7;
+  min-width: 0;
+}
+.readme > * + * { margin-top: 1em; }
+.readme :is(h2, h3, h4) {
+  color: var(--color-fg);
+  font-family: var(--font-display);
+  letter-spacing: -0.02em;
+  scroll-margin-top: 5rem;
+  text-wrap: balance;
+}
+.readme h2 { font-size: 22px; margin-top: 2.2em; font-weight: 600; }
+.readme h3 { font-size: 17px; margin-top: 1.8em; font-weight: 600; }
+.readme h4 { font-size: 15px; margin-top: 1.5em; font-weight: 600; }
+.readme strong { color: var(--color-fg); font-weight: 600; }
+.readme a { color: var(--color-fg); text-decoration: underline; text-decoration-color: var(--color-dim); text-underline-offset: 3px; transition: text-decoration-color 0.15s; }
+.readme a:hover { text-decoration-color: var(--color-fg); }
+.readme :is(ul, ol) { padding-left: 1.3em; }
+.readme ul { list-style: disc; }
+.readme ol { list-style: decimal; }
+.readme li + li { margin-top: 0.35em; }
+.readme li::marker { color: var(--color-dim); }
+.readme :not(pre) > code {
+  font-family: var(--font-mono);
+  font-size: 0.86em;
+  color: var(--color-fg);
+  background: var(--color-panel-3);
+  padding: 0.12em 0.4em;
+  border-radius: 5px;
+}
+.readme pre {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  line-height: 1.7;
+  padding: 16px 18px;
+  border-radius: var(--radius-md);
+  overflow-x: auto;
+  background: var(--color-panel) !important;
+}
+.readme blockquote { padding-left: 1em; box-shadow: inset 2px 0 0 var(--color-panel-3); }
+.readme hr { border: 0; height: 1px; background: var(--color-line); margin-block: 2em; }
+.readme .table-wrap, .readme table { display: block; overflow-x: auto; max-width: 100%; }
+.readme table { border-collapse: collapse; font-size: 14px; }
+.readme :is(th, td) { padding: 8px 12px; text-align: left; vertical-align: top; box-shadow: inset 0 -1px 0 var(--color-line); }
+.readme th { color: var(--color-fg); font-weight: 500; white-space: nowrap; }
