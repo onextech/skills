@@ -6,6 +6,7 @@
  */
 
 export const SKILL_ICONS = [
+  "archive-restore",
   "bot",
   "file-text",
   "gallery-horizontal",
@@ -29,7 +30,7 @@ export type SkillIcon = (typeof SKILL_ICONS)[number];
 export const CATEGORIES = [
   { id: "build", label: "Build", blurb: "Scaffold production features into a Next.js app with the house stack." },
   { id: "style", label: "Style", blurb: "Bring UI in line with the flat house style." },
-  { id: "audit", label: "Audit", blurb: "Check compliance and writing quality, with fixes." },
+  { id: "audit", label: "Audit", blurb: "Check compliance, writing quality and abandoned code, with fixes." },
   { id: "think", label: "Think", blurb: "Plan, scope and pressure-test before writing code." },
   { id: "grow", label: "Grow", blurb: "Diagnose and fix go-to-market and growth." },
   { id: "other", label: "Other", blurb: "Skills that are not categorised yet." },
@@ -60,6 +61,7 @@ export const SKILL_META = {
   "style-hover-effects": { category: "style", icon: "mouse-pointer", addedIn: "0.6.0", tagline: "Hover states that change color, never geometry." },
   "style-auth-ui": { category: "style", icon: "key-round", addedIn: "0.2.0", tagline: "OAuth buttons with the right icons, brand colors, layout and states." },
   "pdpa-audit": { category: "audit", icon: "shield-check", addedIn: "0.12.0", tagline: "Audit personal-data handling against Singapore's PDPA, with PDPC citations." },
+  "pick-up-abandoned": { category: "audit", icon: "archive-restore", addedIn: "0.15.0", tagline: "Find modules nobody adopted, then revive or kill each one by a date." },
   rewrite: { category: "audit", icon: "pen-line", addedIn: "0.4.0", tagline: "Strip AI writing tells and rewrite in a human voice." },
   feature: { category: "think", icon: "git-branch", addedIn: "0.13.0", tagline: "Ship complex features through six gated phases, tests first." },
   ideate: { category: "think", icon: "lightbulb", addedIn: "0.1.0", tagline: "A product manager's gap review of a module, ending in this week's top five." },

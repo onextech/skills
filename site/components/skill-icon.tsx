@@ -1,4 +1,5 @@
 import {
+  ArchiveRestore,
   Bot,
   FileText,
   GalleryHorizontal,
@@ -22,6 +23,7 @@ import type { SkillIcon as SkillIconName } from "@/config/skills";
 import { cn } from "@/lib/cn";
 
 const ICONS: Record<SkillIconName, LucideIcon> = {
+  "archive-restore": ArchiveRestore,
   bot: Bot,
   "file-text": FileText,
   "gallery-horizontal": GalleryHorizontal,
