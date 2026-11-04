@@ -1,5 +1,5 @@
 ---
-description: Audit and rewrite content to remove AI writing patterns ("AI-isms") that make text sound machine-generated. Flags em dashes, hollow intensifiers, vocabulary tells (delve, leverage, robust, harness, etc.), template phrases, hashtag stuffing, chatbot artifacts, copula avoidance, synonym cycling, and structural uniformity — then rewrites for human voice. Supports a detect-only mode that flags patterns without rewriting, and context profiles (`linkedin`, `blog`, `technical-blog`, `investor-email`, `docs`, `casual`) that adjust rule strictness. Use when the user says "/onex:rewrite", "rewrite this", "remove AI-isms", "clean up AI writing", "make this sound less like AI", "edit for AI patterns", "audit my writing", "humanize this", or "flag AI tells".
+description: Audit and rewrite content to remove AI writing patterns ("AI-isms") that make text sound machine-generated. Flags em dashes, hollow intensifiers, vocabulary tells (delve, leverage, robust, harness, etc.), template phrases, hashtag stuffing, chatbot artifacts, copula avoidance, synonym cycling, and structural uniformity — then rewrites for human voice. Supports a detect-only mode that flags patterns without rewriting, and context profiles (`linkedin`, `blog`, `technical-blog`, `investor-email`, `docs`, `casual`, `landing-page`) that adjust rule strictness. Also catches AI headline tells: counting frames ("One Job, One Fixed Fee"), spelled-out numbers as hooks, journey templates ("From X to Y"), time frames ("Live by Week 6"), fee mechanics ("Pay Once"), and Title Case. Use when the user says "/onex:rewrite", "rewrite this", "remove AI-isms", "clean up AI writing", "make this sound less like AI", "edit for AI patterns", "audit my writing", "humanize this", "flag AI tells", or "fix these headlines".
 ---
 
 # Rewrite — Remove AI Writing Patterns
@@ -35,6 +35,15 @@ Everything below is the short version of this skill. If you only enforce one sec
 - **The corporate therapist voice.** "A powerful opportunity to lean into our strengths and foster a culture of accountability." It sounds caring and says nothing. Replace with the concrete action and who does it.
 - **Neat-little-bow conclusions.** "Ultimately, the goal is to build a more resilient and agile organization." If the closing line could end a memo at any company on earth, cut it and replace it with something specific to *this* situation — or end on the last real point.
 - **Profound-sounding paragraphs with no summarizable claim.** If you can't restate the paragraph as one checkable sentence, it's filler dressed as insight. Cut it or rewrite it around the actual point.
+
+**Banned headline patterns** (headlines, section titles, eyebrows, overlines, buttons, step titles, form headings):
+- **Counting.** No quantities ("One Job, One Fixed Fee," "Three Jobs Teams Hand Off First," "Pay Once"), whether written as digits or words. Every number moves to the subhead, proof points, badge or price block, written as digits.
+- **Time.** No weeks, days, months, years, hours, quarters or "time" ("The AI Pilot That Goes Live by Week 6," "Week by Week," "Fills Your Team's Week").
+- **Money.** No amounts, currency codes or symbols (SGD, $), and no "fee" ("Small Tasks Add Up to Two Salaries a Year," "Where the Fee Pays Back First").
+- **Journey templates.** "From X to Y," "Start small, see it work, then…"
+- **Title Case, "We" as the subject, "X, not Y", and dashes.**
+
+See "Headlines and landing-page copy" below for what to write instead.
 
 **Write like a human:**
 - State opinions directly. Connect ideas with the real causal link, not filler: "Customers are doing X, so we need to change Y" — not "In an evolving landscape, it's important to consider Y."
@@ -398,6 +407,7 @@ These slot-fill constructions signal that a sentence was generated, not written.
 
 ### Numbered list inflation
 - "Three key takeaways" / "Five things to know" / "Here are the top seven" — AI defaults to numbered lists because they're structurally safe. Only use numbered lists when the content genuinely has that many discrete, parallel items. If you're padding to hit a number, the list shouldn't exist.
+- The same applies to headings and section titles. "Three Jobs Teams Hand Off First" and "Two Ways to Start" are numbered lists squeezed into a heading. Drop the count: "What teams hand off first." See "Headlines and landing-page copy."
 
 ### Reasoning chain artifacts
 - "Let me think step by step," "Breaking this down," "To approach this systematically," "Step 1:," "Here's my thought process," "First, let's consider," "Working through this logically" — these are artifacts of chain-of-thought reasoning leaking into published prose. The reader doesn't need to see the scaffolding. State the conclusion, then the evidence.
@@ -448,6 +458,114 @@ If the text has 5+ flagged vocabulary hits across multiple categories, 3+ distin
 
 ---
 
+## Headlines and landing-page copy
+
+AI headlines count things, put timelines and prices up front, narrate a process and come out in Title Case. They describe how the offer is built. Good headlines (Apple, Stripe, and YC startups like Vanta, Attio and Ramp) sell what the reader gets: "Pro further." "Get your compliance together." "The ultimate CRM for startups."
+
+### 1. The headline promises. The subhead proves.
+Every number moves out of the headline: prices, timelines, headcount, salaries. Put them in the subhead, proof points, badge or price block, written as digits. The headline carries the payoff. The line under it carries the evidence.
+
+- Headline: "Let AI do the paperwork."
+- Subhead: "Pick one manual job, like invoices, claims or customer emails. Our engineers build AI into the systems you already use and put it live in 6 weeks."
+
+### 2. Never count in a headline
+Ban all of these, whether written as digits or words:
+- Quantities: one, two, three, "once", "twice".
+- Time units: week, day, month, year, hour, quarter, "time". This also covers phrases like "Week by Week" and "in 6 Weeks".
+- Money: amounts, currency codes and symbols (SGD, $), and the word "fee". "Price" is fine when it makes a claim ("A price that doesn't move.").
+- Offer mechanics: how many jobs, steps or phases.
+
+Apply this to eyebrows, overlines and buttons too. "See the 6 Week Plan" becomes "See how it works". "SGD 25,000 · 6 Weeks · Fixed" becomes "AI pilot for Singapore teams".
+
+### 3. Name the pain in the buyer's words
+Use the word the buyer would use about their own week: paperwork, busywork, admin, backlog, "stuck in demo", "stalled". Don't use the seller's words, like "production AI", "use case" or "workflow automation". If the buyer wouldn't say it to a colleague, it doesn't go in the headline.
+
+### 4. Pick from five shapes
+- **Imperative verb.** "Let AI do the paperwork." "Hand off the paperwork."
+- **Category claim about the reader.** "Made for teams buried in admin." "Built for teams with a budget and a backlog." "For teams with a pilot stuck in demo."
+- **Twisted familiar phrase.** "Your busywork has a salary." "Stalled pilots aren't free." "Yours to keep." "The money questions."
+- **Two-beat statement.** "You describe it. Engineers build it."
+- **Plain question for form headings.** "Which job would you hand off?"
+
+### 5. A section heading answers what the reader came to that section for
+Don't label the section. Say what they get from reading it.
+
+| Section | Label (avoid) | Answer (use) |
+|---|---|---|
+| Pricing | One Job, One Fixed Fee | What the price covers. |
+| Guarantee | The Guarantee, in Writing | The risk sits with us. |
+| FAQ | Questions Owners Ask Before They Start | Before you sign. |
+| Proof | Workflows Already Running for Singapore Teams | Already running in Singapore. |
+| Proof (named) | AI Delivered for MPA, IMO and People's Association | Delivered for MPA, IMO and People's Association. |
+| Thank-you | Your Workflow Is With a Senior Engineer | Your job is with an engineer. |
+
+### 6. Keep one voice per page
+Every headline on a page comes from one angle, so the page reads as a single argument:
+- A page about the chore talks about paperwork: "Let AI do the paperwork." "Priced by the job."
+- A page about risk talks about production: "AI pilots that make it to production." "The risk sits with us."
+- A page about money talks about cost: "A fixed price for working AI." "The whole cost, up front."
+
+The closing form heading can echo the hero ("Let AI do the paperwork." then "Hand off the paperwork."). That echo is the only repeat allowed.
+
+### 7. Format
+- Sentence case. Capitalise proper nouns and acronyms only (AI, IT, MPA).
+- End statements with a period. End questions with a question mark.
+- 2 to 9 words. If it needs more, the idea is two headlines or belongs in the subhead.
+- No "We" as the subject. "The risk sits with us." is fine.
+- No "X, not Y". Rewrite "Pay for the job, not the hours" as a positive claim ("Priced by the job.").
+- No dashes.
+
+### 8. Tests before shipping
+- **Swap test.** Delete or change any number in the headline. If it still works, the number was decoration. With the counting ban, every headline should pass trivially.
+- **Competitor test.** Paste the headline onto a competitor's page. If it still fits, sharpen it around this buyer's pain.
+- **Read-aloud test.** Would the buyer say it to a colleague? "Your busywork has a salary" passes. "Production AI in 6 Weeks" doesn't.
+- **Lint.** Run these checks on every headline, eyebrow and step title:
+
+```
+/\d/                                                                        digit
+/\b(one|two|three|four|five|six|seven|eight|nine|ten|once|twice)\b/i        counting
+/\b(weeks?|days?|months?|years?|hours?|minutes?|quarter|time|fees?)\b/i      time or fee
+/[$€£¥]|\b[A-Z]{3}\s?\d/                                                    money
+/^From\b|\bthen\b/i                                                         journey
+any word after the first that starts with a capital and isn't a proper noun  title case
+word count > 9                                                              too long
+```
+
+### 9. Scope
+- Apply to headlines, section titles, overlines, eyebrows, buttons, step titles and form headings.
+- Exempt: step labels (the small timeline tag on a step, like "Weeks 1 and 2"), price figures, proof points and paid search ads. Ads have their own rules, and digits help them.
+
+### Before / after
+
+| Before | After |
+|---|---|
+| Production AI in 6 Weeks, Built by Senior Engineers in Singapore | Let AI do the paperwork. |
+| Hand Off the Work That Fills Your Team's Week | Let AI do the paperwork. |
+| The AI Pilot That Goes Live by Week 6 | AI pilots that make it to production. |
+| Pay Once and Keep the AI Workflow | A fixed price for working AI. |
+| Made for Owners Whose Team Runs on Spreadsheets | Made for teams buried in admin. |
+| Built for Companies With 50 or More Staff | Built for teams with a budget and a backlog. |
+| Small Tasks Add Up to Two Salaries a Year | Your busywork has a salary. |
+| Every Stalled Pilot Costs a Quarter | Stalled pilots aren't free. |
+| SGD 120,000 a Year Against SGD 25,000 Once | Manual work is the expensive option. |
+| Three Jobs Teams Hand Off First | What teams hand off first. |
+| Where the Fee Pays Back First | Where it pays for itself first. |
+| From One Conversation to a Live Workflow | You describe it. Engineers build it. |
+| From Kickoff to Live, Week by Week | How it gets to production. |
+| What SGD 25,000 Buys, Week by Week | What the price covers. |
+| One Job, One Fixed Fee | Priced by the job. |
+| One Price, Agreed Before Kickoff | A price that doesn't move. |
+| Know the Whole Cost Before Kickoff | The whole cost, up front. |
+| Start Small, See It Work, Then Add the Next Job | Try it on your worst task first. |
+| What You Keep After Week 6 | Yours to keep. |
+| Questions About Cost and Commitment | The money questions. |
+| Tell Us the Job You Would Hand Off First | Which job would you hand off? |
+| Hand Off the First Job in 6 Weeks | Hand off the paperwork. |
+| Start Your SGD 25,000 Pilot | Get a price you can approve. |
+| Start the Pilot That Goes Live | Get your pilot into production. |
+
+---
+
 ## Severity tiers
 
 Not all AI-isms are equal. When doing a quick pass or triaging a large document, prioritize by tier:
@@ -475,6 +593,10 @@ Not all AI-isms are equal. When doing a quick pass or triaging a large document,
 - Bold-word-colon-explanation in prose ("**Clarity:** Ensure your memo is clear...")
 - Corporate therapist voice ("a powerful opportunity to foster a culture of accountability")
 - Profound-sounding paragraphs with no summarizable claim
+- Counting headlines and spelled-out numbers as hooks ("One Job, One Fixed Fee," "Three Jobs Teams Hand Off First")
+- Journey/process headlines ("From X to Y," "Start small, see it work, then…")
+- Time-frame and money headlines ("Live by Week 6," "Week by Week," "Pay Once and Keep the AI Workflow," "Start Your SGD 25,000 Pilot")
+- Section headings that label instead of answer ("The Guarantee, in Writing" instead of "The risk sits with us.")
 
 ### P2 — Stylistic polish (fix when time allows)
 - Generic conclusions ("The future looks bright"), including any-company-on-earth bow-tie closers
@@ -507,33 +629,35 @@ Pass an optional context hint to adjust rule strictness. If no context is specif
 **`investor-email`** — High-trust audience. Tighten everything; promotional language is the biggest risk.
 **`docs`** — Documentation, READMEs, guides. Clarity over voice.
 **`casual`** — Slack messages, internal notes, quick replies. Only catch the worst offenders.
+**`landing-page`** — Marketing sites, hero sections, feature and pricing sections, slide titles. Headline rules apply at extra strength. Some sell is expected.
 
 ### Tolerance matrix
 
 Rules not listed in the table apply at full strength across all profiles.
 
-| Rule | linkedin | blog | technical-blog | investor-email | docs | casual |
-|------|----------|------|----------------|----------------|------|--------|
-| Em dashes | relaxed (2/post OK) | strict | strict | strict | relaxed | skip |
-| Bold overuse | relaxed (bold hooks OK) | strict | strict | strict | relaxed | skip |
-| Emoji in headers | relaxed (1-2 end-of-line OK) | strict | strict | strict | skip | skip |
-| Excessive bullets | skip (lists work on LinkedIn) | strict | relaxed (technical lists OK) | strict | skip (lists are docs) | skip |
-| Hedging | strict | strict | relaxed ("may" is accurate in technical) | strict | relaxed | skip |
-| Word table (full list) | strict | strict | **partial** (see below) | strict | relaxed | P0 only |
-| Promotional language | relaxed (some sell is expected) | strict | strict | **extra strict** | strict | skip |
-| Significance inflation | strict | strict | strict | **extra strict** | relaxed | skip |
-| Copula avoidance | skip | strict | relaxed | strict | skip | skip |
-| Uniform paragraph length | skip (short-form) | strict | strict | strict | relaxed | skip |
-| Numbered list inflation | relaxed | strict | relaxed | strict | skip | skip |
-| Rhetorical questions | relaxed (1 as hook OK) | strict | strict | strict | strict | skip |
-| Transition phrases | skip (short-form) | strict | strict | strict | relaxed | skip |
-| Generic conclusions | skip | strict | strict | **extra strict** | skip | skip |
-| Hashtag stuffing | strict | strict | strict | **extra strict** | skip (no hashtags in docs) | skip |
-| Bullet-NP lists | strict | strict | relaxed (technical option lists OK) | strict | relaxed (parameter lists OK) | skip |
-| Tier 3 phrase clustering | strict | strict | strict | **extra strict** | relaxed | skip |
-| Future-narrative closers | strict | strict | strict | **extra strict** | skip | skip |
-| Hedge-stacked predictions | strict | strict | relaxed ("could" is hedged accuracy) | **extra strict** | relaxed | skip |
-| Real/actual inflation | strict | strict | strict | **extra strict** | relaxed | skip |
+| Rule | linkedin | blog | technical-blog | investor-email | docs | casual | landing-page |
+|------|----------|------|----------------|----------------|------|--------|--------------|
+| Em dashes | relaxed (2/post OK) | strict | strict | strict | relaxed | skip | strict |
+| Bold overuse | relaxed (bold hooks OK) | strict | strict | strict | relaxed | skip | relaxed (bold hero OK) |
+| Emoji in headers | relaxed (1-2 end-of-line OK) | strict | strict | strict | skip | skip | strict |
+| Excessive bullets | skip (lists work on LinkedIn) | strict | relaxed (technical lists OK) | strict | skip (lists are docs) | skip | relaxed (feature lists OK) |
+| Hedging | strict | strict | relaxed ("may" is accurate in technical) | strict | relaxed | skip | strict |
+| Word table (full list) | strict | strict | **partial** (see below) | strict | relaxed | P0 only | strict |
+| Promotional language | relaxed (some sell is expected) | strict | strict | **extra strict** | strict | skip | relaxed (some sell is expected) |
+| Significance inflation | strict | strict | strict | **extra strict** | relaxed | skip | strict |
+| Copula avoidance | skip | strict | relaxed | strict | skip | skip | relaxed |
+| Uniform paragraph length | skip (short-form) | strict | strict | strict | relaxed | skip | skip (short-form) |
+| Numbered list inflation | relaxed | strict | relaxed | strict | skip | skip | **extra strict** (headings too) |
+| Rhetorical questions | relaxed (1 as hook OK) | strict | strict | strict | strict | skip | relaxed (1 as hook OK) |
+| Transition phrases | skip (short-form) | strict | strict | strict | relaxed | skip | skip (short-form) |
+| Generic conclusions | skip | strict | strict | **extra strict** | skip | skip | strict |
+| Hashtag stuffing | strict | strict | strict | **extra strict** | skip (no hashtags in docs) | skip | skip |
+| Bullet-NP lists | strict | strict | relaxed (technical option lists OK) | strict | relaxed (parameter lists OK) | skip | relaxed |
+| Tier 3 phrase clustering | strict | strict | strict | **extra strict** | relaxed | skip | strict |
+| Future-narrative closers | strict | strict | strict | **extra strict** | skip | skip | strict |
+| Hedge-stacked predictions | strict | strict | relaxed ("could" is hedged accuracy) | **extra strict** | relaxed | skip | strict |
+| Real/actual inflation | strict | strict | strict | **extra strict** | relaxed | skip | strict |
+| Counting / journey headlines | strict | strict | strict | strict | relaxed | skip | **extra strict** |
 
 **Technical-blog word table exceptions:** These terms have legitimate technical meaning and should not be flagged in technical context: `robust`, `comprehensive`, `seamless`, `ecosystem`, `leverage` (when discussing actual platform leverage/APIs), `facilitate`, `underpin`, `streamline`. Still flag: `delve`, `tapestry`, `beacon`, `embark`, `testament to`, `game-changer`, `harness`.
 
@@ -551,6 +675,7 @@ When no context is specified, infer from these signals:
 | Code blocks, API references, or technical architecture | `technical-blog` |
 | Salutation ("Hi [name]", "Dear") + investor/fundraising language | `investor-email` |
 | Step-by-step instructions, parameter docs, README structure | `docs` |
+| Hero headline + subhead, CTA buttons ("Get started," "Book a demo"), pricing or feature sections | `landing-page` |
 | No strong signals | `blog` (safest default — all rules apply) |
 
 If auto-detection feels wrong, say which profile you're using and why. The user can override.

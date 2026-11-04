@@ -17,7 +17,7 @@ Two modes:
 - **`rewrite` (default)** — full audit + rewrite + diff + second pass.
 - **`detect`** — flag only, no rewriting. Use when the patterns might be intentional, you don't want the text altered (someone else's writing, published content, reference material), or you just want a quick scan.
 
-Six context profiles adjust how strict the rules are: `linkedin`, `blog`, `technical-blog`, `investor-email`, `docs`, `casual`. Auto-detected from cues (short + hashtags → `linkedin`, code blocks → `technical-blog`, salutation + fundraising language → `investor-email`, etc.), and you can override.
+Seven context profiles adjust how strict the rules are: `linkedin`, `blog`, `technical-blog`, `investor-email`, `docs`, `casual`, `landing-page`. Auto-detected from cues (short + hashtags → `linkedin`, code blocks → `technical-blog`, salutation + fundraising language → `investor-email`, etc.), and you can override.
 
 ## What it catches
 
@@ -26,6 +26,7 @@ A non-exhaustive sample of the rule categories — the full SKILL.md has the com
 - **Vocabulary tells** — three-tier word list (Tier 1 always flag: *delve, leverage, robust, comprehensive, seamless, game-changer*; Tier 2 flag in clusters: *harness, foster, streamline, empower*; Tier 3 flag by density: *significant, innovative, compelling*).
 - **Formatting** — em dashes, bold overuse, emoji in headers, excessive bullet lists, title-case headings.
 - **Structural tells** — uniform sentence and paragraph length (the #1 detection signal), formulaic openings, compulsive rule of three, copula avoidance (*serves as, features, boasts*), synonym cycling, excessive headers.
+- **Headline tells**: counting frames and spelled-out numbers as hooks (*One Job, One Fixed Fee*, *Three Jobs Teams Hand Off First*), journey templates (*From X to Y*, *Start small, see it work, then…*), time frames (*Live by Week 6*, *Week by Week*), fee mechanics (*Pay Once and Keep the AI Workflow*), and Title Case. Rewrites follow how Apple, Stripe, and YC startup landing pages write headlines. The headline carries the payoff in the buyer's words, and the subhead carries the proof in digits. Section headings answer instead of label, each page keeps one voice, and a regex lint covers headlines, eyebrows, buttons and step titles.
 - **Significance inflation** — *watershed moment, pivotal moment, marking a turning point in the evolution of*.
 - **Generic future-narrative closers** — *may become one of the most important narratives of the next market cycle*.
 - **Hedge-stacked predictions** — *could potentially, may eventually, might ultimately*.
