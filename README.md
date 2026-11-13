@@ -11,6 +11,7 @@ Each skill lives in `skills/<name>/` with its own `SKILL.md` and `README.md`. Th
 | [`feature`](./skills/feature) | `/onex:feature` | Implement a complex feature through six gated phases — requirements, architecture, test plan (Gherkin acceptance, property-based, integration with minimal mocking), test-first module-by-module implementation, self-review, and final validation with real test output and coverage. Waits for approval of the design and test plan before writing code. |
 | [`ideate`](./skills/ideate) | `/onex:ideate` | Brainstorm gaps, loopholes, and improvements across a module or app — reviewed as a PM, returned as a categorized, severity-marked numbered list you can pick from. |
 | [`pdpa-audit`](./skills/pdpa-audit) | `/onex:pdpa-audit` | Audit an app or module against Singapore's PDPA — builds a personal-data inventory from the real schema, code, and integration surface (SDKs, analytics, LLM providers, Sentry extras, logs), then tests it against the data protection obligations, the NRIC rules and the 31 Dec 2026 authentication deadline, Do Not Call, breach notification, and cross-border transfer. Returns a severity-marked numbered finding list with paragraph-level PDPC citations and a fix per item. |
+| [`pick-up-abandoned`](./skills/pick-up-abandoned) | `/onex:pick-up-abandoned` | Find modules that were built, deployed and never adopted, finished or removed — profiles each with git history (days since a meaningful commit, Claude Code authorship, build burst), reachability, missing setup, unfinished plan phases and usage data, diagnoses why it stalled (setup, refinement, confidence, adoption, priority), and gives one verdict (revive, prove, park, absorb, kill) with a small next step and a decide-by date. Keeps a register in `docs/abandoned/` so modules left undecided escalate toward deletion across scans. |
 | [`add-auth-db`](./skills/add-auth-db) | `/onex:add-auth-db` | Add Better Auth + a Neon Postgres database to a Next.js app using raw SQL (no ORM) — migration runner, admin seeder, email/magic-link/OTP auth, and a login dialog. |
 | [`add-terms-privacy`](./skills/add-terms-privacy) | `/onex:add-terms-privacy` | Add Terms of Service + Privacy Policy pages to a Next.js App Router app — gathers every company detail (entity, registration no./UEN, address, governing law, contact emails) at run time so nothing is hardcoded, detects the app's data processors for an accurate Privacy sharing list, scaffolds `app/(legal)/terms` + `/privacy`, and offers to wire consent links + a footer. |
 | [`add-pwa`](./skills/add-pwa) | `/onex:add-pwa` | Turn a Next.js App Router app into an installable PWA using the OnEx defaults — web app manifest, code-generated brand icons (favicon, apple-touch, 192/512/maskable via `next/og`), an app-shell service worker (network-first nav, stale-while-revalidate assets, `/offline` fallback — no Workbox/Serwist), a dismissible install banner (Chromium + iOS), PWA metadata/viewport, `sw.js` security headers, and Vitest contract tests. Asks only for app name + domain; no web push. |
@@ -28,7 +29,7 @@ Each skill lives in `skills/<name>/` with its own `SKILL.md` and `README.md`. Th
 
 ## Install
 
-Add the marketplace, then install the plugin:
+Browse every skill at [onexgroup.co/skills](https://www.onexgroup.co/skills), or add the marketplace and install the plugin:
 
 ```bash
 /plugin marketplace add onextech/skills
@@ -75,6 +76,7 @@ skills/
     ├── feature/SKILL.md
     ├── ideate/SKILL.md
     ├── pdpa-audit/SKILL.md
+    ├── pick-up-abandoned/SKILL.md
     ├── add-auth-db/SKILL.md
     ├── add-terms-privacy/SKILL.md
     ├── add-pwa/SKILL.md
@@ -84,6 +86,7 @@ skills/
     ├── setup-chat/SKILL.md
     ├── style-hover-effects/SKILL.md
     ├── style-auth-ui/SKILL.md
+    ├── refine-animation/SKILL.md
     ├── setup-agent/SKILL.md
     ├── council/SKILL.md
     ├── rewrite/SKILL.md
@@ -96,7 +99,8 @@ skills/
 2. Optionally add `skills/<your-skill>/README.md` for a human-facing description.
 3. Add a row to the **Skills** table above.
 4. Bump `version` in `.claude-plugin/plugin.json`.
-5. Open a PR.
+5. Add an entry to `apps/group/config/skills/meta.ts` in the [onex-v3](https://github.com/onextech/onex-v3) repo (category, icon, `addedIn` set to the new version). That is what the landing page at [onexgroup.co/skills](https://www.onexgroup.co/skills) reads, alongside this repo's `SKILL.md` and `README.md` files.
+6. Commit and push to `main` directly — this repo doesn't use pull requests (see `CLAUDE.md`).
 
 ## License
 
