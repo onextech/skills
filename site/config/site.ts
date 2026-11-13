@@ -2,7 +2,7 @@ export const SITE = {
   name: "One X Skills",
   shortName: "One X",
   description:
-    "Claude Code skills that turn \"add auth\" or \"audit for PDPA\" into the exact steps your best engineer would take, with gates, tests and house style built in.",
+    "Skills covering auth, chat, PDPA audits, product reviews and B2B growth. Your agent stops guessing and follows steps that have worked on real projects.",
   repoUrl: "https://github.com/onextech/skills",
   repoBranch: "main",
 } as const;
@@ -42,8 +42,8 @@ export const BENTO_COLUMNS = { sm: 2, lg: 3 } as const;
 /** Page copy. `{count}` is replaced at render time. */
 export const COPY = {
   hero: {
-    headline: "Claude Code, with your team\u2019s taste.",
-    lede: "{count} skills that turn \u201cadd auth\u201d or \u201caudit for PDPA\u201d into the exact steps your best engineer would take, with gates, tests and house style built in.",
+    headline: "Skills for AI agents that do real work.",
+    lede: "{count} skills covering auth, chat, PDPA audits, product reviews and B2B growth. Your agent stops guessing and follows steps that have worked on real projects.",
     primaryCta: "Install plugin",
     secondaryCta: "Browse skills",
   },

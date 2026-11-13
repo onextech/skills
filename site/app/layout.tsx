@@ -16,7 +16,7 @@ const geistMono = Geist_Mono({ variable: "--font-geist-mono", subsets: ["latin"]
 
 export const metadata: Metadata = {
   metadataBase: siteUrl(),
-  title: { default: `${SITE.name}: Claude Code skills for product teams`, template: `%s · ${SITE.name}` },
+  title: { default: `${SITE.shortName}: Skills for AI agents that do real work`, template: `%s · ${SITE.name}` },
   description: SITE.description,
   openGraph: { siteName: SITE.name, type: "website" },
 };
