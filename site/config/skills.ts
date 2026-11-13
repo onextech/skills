@@ -58,6 +58,7 @@ export const SKILL_META = {
   style: { category: "style", icon: "palette", addedIn: "0.1.0", tagline: "Audit a module against the flat house style, then refactor it." },
   "style-chat": { category: "style", icon: "messages-square", addedIn: "0.5.0", tagline: "Composer, streaming, thinking states and suggestion chips for chat UIs." },
   "style-hover-effects": { category: "style", icon: "mouse-pointer", addedIn: "0.6.0", tagline: "Hover states that change color, never geometry." },
+  "refine-animation": { category: "style", icon: "sparkles", addedIn: "0.15.0", tagline: "Motion that stays subtle and fast: easing, timing, origin, stagger and press states." },
   "style-auth-ui": { category: "style", icon: "key-round", addedIn: "0.2.0", tagline: "OAuth buttons with the right icons, brand colors, layout and states." },
   "pdpa-audit": { category: "audit", icon: "shield-check", addedIn: "0.12.0", tagline: "Audit personal-data handling against Singapore's PDPA, with PDPC citations." },
   rewrite: { category: "audit", icon: "pen-line", addedIn: "0.4.0", tagline: "Strip AI writing tells and rewrite in a human voice." },
